@@ -10,24 +10,22 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordmanager.LoginController">
    <children>
-      <Text layoutX="165.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Manager">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Text>
-      <TextField fx:id="emailField" layoutX="164.0" layoutY="140.0" prefHeight="40.0" prefWidth="251.0" promptText="Email" />
-      <Text layoutX="165.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+      <TextField fx:id="emailField" layoutX="164.0" layoutY="85.0" prefHeight="40.0" prefWidth="251.0" promptText="Email" />
+      <Text layoutX="165.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
             <Font size="15.0" />
          </font></Text>
-      <Text layoutX="165.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <Text layoutX="165.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font size="15.0" />
          </font></Text>
-      <PasswordField fx:id="passwordField" layoutX="165.0" layoutY="223.0" prefHeight="40.0" prefWidth="251.0" promptText="Password" />
-      <Button fx:id="loginButton" layoutX="226.0" layoutY="303.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="30.0" prefWidth="96.0" text="Login" />
-      <Hyperlink layoutX="221.0" layoutY="345.0" text="Create An Account" />
-      <Text fill="WHITE" layoutX="179.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " wrappingWidth="237.0637969970703">
+      <PasswordField fx:id="passwordField" layoutX="165.0" layoutY="183.0" prefHeight="40.0" prefWidth="251.0" promptText="Password" />
+      <Button fx:id="loginButton" layoutX="199.0" layoutY="278.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="40.0" prefWidth="160.0" text="Login" />
+      <Hyperlink layoutX="200.0" layoutY="335.0" text="Create An Account">
+         <font>
+            <Font size="16.0" />
+         </font></Hyperlink>
+      <Text fill="WHITE" layoutX="165.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " wrappingWidth="237.0637969970703">
          <font>
             <Font size="17.0" />
          </font>
