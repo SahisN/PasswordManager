@@ -10,6 +10,7 @@ module com.example.passwordmanager {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires jdk.compiler;
 
     opens com.example.passwordmanager to javafx.fxml;
     exports com.example.passwordmanager;

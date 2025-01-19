@@ -1,13 +1,13 @@
 package com.example.passwordmanager;
 
-
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+public class SignupController {
+    @FXML
+    private TextField nameField;
 
-public class LoginController {
     @FXML
     private TextField emailField;
 
@@ -15,24 +15,25 @@ public class LoginController {
     private PasswordField passwordField;
 
     @FXML
-    private Button loginButton;
-
+    private PasswordField confirmPasswordField;
 
     @FXML
-    private void handleLogin() {
-        // Get values from the fields
+    private void handleSignUp() {
         String email = emailField.getText();
         String password = passwordField.getText();
+        String confirmPassword = confirmPasswordField.getText();
+        String fullName = nameField.getText();
 
-        // Print the values (replace with actual login logic if needed)
+        System.out.println("Full Name: " + fullName);
         System.out.println("Email: " + email);
         System.out.println("Password: " + password);
+        System.out.println("Confirm Password: " + confirmPassword);
     }
 
     @FXML
-    private void switchToCreateAccount() {
+    private void switchToLogin() {
         try {
-            PasswordManagerApplication.switchScene("signup.fxml");
+            PasswordManagerApplication.switchScene("login.fxml");
         } catch (Exception e) {
             e.printStackTrace();
         }

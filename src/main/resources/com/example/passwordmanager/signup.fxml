@@ -8,31 +8,31 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="577.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordmanager.SignupController">
    <children>
-      <TextField layoutX="206.0" layoutY="58.0" prefHeight="33.0" prefWidth="229.0" />
-      <TextField layoutX="204.0" layoutY="164.0" prefHeight="33.0" prefWidth="229.0" />
-      <Text layoutX="204.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name">
+      <TextField fx:id="nameField" layoutX="177.0" layoutY="58.0" prefHeight="33.0" prefWidth="229.0" />
+      <TextField fx:id="emailField" layoutX="177.0" layoutY="166.0" prefHeight="33.0" prefWidth="229.0" />
+      <Text layoutX="181.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <Text layoutX="207.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+      <Text layoutX="178.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <Text layoutX="207.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <Text layoutX="178.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <Button layoutX="212.0" layoutY="432.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="229.0" text="Sign up">
+      <Button layoutX="173.0" layoutY="444.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="53.0" prefWidth="229.0" text="Sign up">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Hyperlink layoutX="216.0" layoutY="496.0" prefHeight="36.0" prefWidth="229.0" text="Go Back To Login">
+      <Hyperlink layoutX="192.0" layoutY="501.0" onAction="#switchToLogin" prefHeight="42.0" prefWidth="191.0" text="Go Back To Login">
          <font>
             <Font size="22.0" />
          </font>
@@ -57,12 +57,12 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Text layoutX="208.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password">
+      <Text layoutX="178.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password">
          <font>
             <Font size="19.0" />
          </font>
       </Text>
-      <PasswordField layoutX="208.0" layoutY="268.0" prefHeight="33.0" prefWidth="229.0" />
-      <PasswordField layoutX="208.0" layoutY="371.0" prefHeight="33.0" prefWidth="229.0" />
+      <PasswordField fx:id="passwordField" layoutX="177.0" layoutY="260.0" prefHeight="33.0" prefWidth="229.0" />
+      <PasswordField fx:id="confirmPasswordField" layoutX="176.0" layoutY="363.0" prefHeight="33.0" prefWidth="229.0" />
    </children>
 </Pane>
