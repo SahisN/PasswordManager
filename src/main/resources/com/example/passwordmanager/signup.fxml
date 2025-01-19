@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="577.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordmanager.SignupController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="577.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordmanager.controllers.SignupController">
    <children>
       <TextField fx:id="nameField" layoutX="177.0" layoutY="58.0" prefHeight="33.0" prefWidth="229.0" />
       <TextField fx:id="emailField" layoutX="177.0" layoutY="166.0" prefHeight="33.0" prefWidth="229.0" />

@@ -1,6 +1,7 @@
-package com.example.passwordmanager;
+package com.example.passwordmanager.controllers;
 
 
+import com.example.passwordmanager.PasswordManagerApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;

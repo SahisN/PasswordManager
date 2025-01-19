@@ -14,4 +14,6 @@ module com.example.passwordmanager {
 
     opens com.example.passwordmanager to javafx.fxml;
     exports com.example.passwordmanager;
+    exports com.example.passwordmanager.controllers;
+    opens com.example.passwordmanager.controllers to javafx.fxml;
 }
