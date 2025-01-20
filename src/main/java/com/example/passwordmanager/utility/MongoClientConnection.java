@@ -31,6 +31,7 @@ public class MongoClientConnection {
             catch(MongoException e){
                 e.printStackTrace();
             }
+
         }
     }
 

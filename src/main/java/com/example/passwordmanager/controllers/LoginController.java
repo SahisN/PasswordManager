@@ -8,6 +8,7 @@ import com.example.passwordmanager.utility.ValidationError;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
@@ -29,6 +30,9 @@ public class LoginController {
     private Text passwordTextError;
 
     @FXML
+    private ProgressIndicator progressIndicator;
+
+    @FXML
     private void handleLogin() {
         // Get values from the fields
         String email = emailField.getText();
@@ -42,11 +46,21 @@ public class LoginController {
 
         if(isValid) {
             try {
-                System.out.println("Logging you in!");
+                // show progress bar while connecting to database & disable textfield
+                progressIndicator.setVisible(true);
+                disableField(true);
                 MongoClientConnection.checkConnection();
+
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+
+            finally {
+                progressIndicator.setVisible(false);
+                disableField(false);
+
+            }
+
         }
 
 
@@ -85,6 +99,14 @@ public class LoginController {
     private void clearPasswordErrorText() {
         passwordTextError.setText("");
     }
+
+    private void disableField(boolean isDisable) {
+       emailField.setDisable(isDisable);
+       passwordField.setDisable(isDisable);
+       loginButton.setDisable(isDisable);
+    }
+
+
 
 
 
