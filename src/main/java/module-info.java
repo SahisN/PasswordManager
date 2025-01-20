@@ -11,6 +11,10 @@ module com.example.passwordmanager {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires jdk.compiler;
+    requires java.net.http;
+    requires org.mongodb.driver.core;
+    requires org.mongodb.driver.sync.client;
+    requires org.mongodb.bson;
 
     opens com.example.passwordmanager to javafx.fxml;
     exports com.example.passwordmanager;

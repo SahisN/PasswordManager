@@ -3,6 +3,7 @@ package com.example.passwordmanager.controllers;
 
 import com.example.passwordmanager.PasswordManagerApplication;
 import com.example.passwordmanager.utility.FormValidator;
+import com.example.passwordmanager.utility.MongoClientConnection;
 import com.example.passwordmanager.utility.ValidationError;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -40,7 +41,12 @@ public class LoginController {
         boolean isValid = validateLoginForm(email, password);
 
         if(isValid) {
-            System.out.println("Logging you in!");
+            try {
+                System.out.println("Logging you in!");
+                MongoClientConnection.checkConnection();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
 
 

@@ -38,5 +38,10 @@
             <Font size="17.0" />
          </font>
       </Text>
+      <Hyperlink layoutX="277.0" layoutY="171.0" text="Forgot Password?" underline="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Hyperlink>
    </children>
 </Pane>
