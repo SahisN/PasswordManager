@@ -8,29 +8,40 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordmanager.LoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.passwordmanager.controllers.LoginController">
    <children>
-      <Text layoutX="165.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password Manager">
+      <TextField fx:id="emailField" layoutX="153.0" layoutY="85.0" onMouseClicked="#clearEmailErrorText" prefHeight="40.0" prefWidth="251.0" promptText="Email" />
+      <Text layoutX="154.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
          <font>
-            <Font size="30.0" />
-         </font>
-      </Text>
-      <TextField fx:id="emailField" layoutX="164.0" layoutY="140.0" prefHeight="40.0" prefWidth="251.0" promptText="Email" />
-      <Text layoutX="165.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
-         <font>
-            <Font size="15.0" />
+            <Font size="19.0" />
          </font></Text>
-      <Text layoutX="165.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <Text layoutX="154.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
-            <Font size="15.0" />
+            <Font size="19.0" />
          </font></Text>
-      <PasswordField fx:id="passwordField" layoutX="165.0" layoutY="223.0" prefHeight="40.0" prefWidth="251.0" promptText="Password" />
-      <Button fx:id="loginButton" layoutX="226.0" layoutY="303.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="30.0" prefWidth="96.0" text="Login" />
-      <Hyperlink layoutX="221.0" layoutY="345.0" text="Create An Account" />
-      <Text fill="WHITE" layoutX="179.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " wrappingWidth="237.0637969970703">
+      <PasswordField fx:id="passwordField" layoutX="154.0" layoutY="201.0" onMouseClicked="#clearPasswordErrorText" prefHeight="40.0" prefWidth="251.0" promptText="Password" />
+      <Button fx:id="loginButton" layoutX="187.0" layoutY="288.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="40.0" prefWidth="160.0" text="Login">
+         <font>
+            <Font size="19.0" />
+         </font></Button>
+      <Hyperlink layoutX="183.0" layoutY="333.0" onAction="#switchToCreateAccount" text="Create An Account">
+         <font>
+            <Font size="19.0" />
+         </font></Hyperlink>
+      <Text fx:id="passwordTextError" fill="RED" layoutX="155.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="280.0637969970703">
          <font>
             <Font size="17.0" />
          </font>
       </Text>
+      <Text fx:id="emailTextError" fill="RED" layoutX="155.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="237.0637969970703">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Text>
+      <Hyperlink layoutX="277.0" layoutY="171.0" text="Forgot Password?" underline="true">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Hyperlink>
    </children>
 </Pane>
