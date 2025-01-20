@@ -1,6 +1,7 @@
 package com.example.passwordmanager.controllers;
 
 import com.example.passwordmanager.PasswordManagerApplication;
+import com.example.passwordmanager.mongodb.MongoClientConnection;
 import com.example.passwordmanager.utility.FormValidator;
 import com.example.passwordmanager.utility.ValidationError;
 import javafx.fxml.FXML;
@@ -41,16 +42,15 @@ public class SignupController {
         String confirmPassword = confirmPasswordField.getText();
         String fullName = nameField.getText();
 
-//        System.out.println("Full Name: " + fullName);
-//        System.out.println("Email: " + email);
-//        System.out.println("Password: " + password);
-//        System.out.println("Confirm Password: " + confirmPassword);
-
         boolean isValid = validate(fullName, email, password, confirmPassword);
 
         // handle authentication
         if(isValid) {
             System.out.println("Logging you in!");
+            boolean isCreated = MongoClientConnection.createUser(fullName, email, password);
+            if(isCreated) {
+                System.out.println("Account created!");
+            }
         }
 
     }

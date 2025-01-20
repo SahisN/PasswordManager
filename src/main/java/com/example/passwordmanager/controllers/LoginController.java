@@ -3,8 +3,9 @@ package com.example.passwordmanager.controllers;
 
 import com.example.passwordmanager.PasswordManagerApplication;
 import com.example.passwordmanager.utility.FormValidator;
-import com.example.passwordmanager.utility.MongoClientConnection;
+import com.example.passwordmanager.mongodb.MongoClientConnection;
 import com.example.passwordmanager.utility.ValidationError;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -45,25 +46,53 @@ public class LoginController {
         boolean isValid = validateLoginForm(email, password);
 
         if(isValid) {
-            try {
-                // show progress bar while connecting to database & disable textfield
-                progressIndicator.setVisible(true);
-                disableField(true);
-                MongoClientConnection.checkConnection();
+            // show progress bar while connecting to database & disable text field
+            boolean isLoggedIn = authenticateUser(email,password);
 
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            if(isLoggedIn) {
+                System.out.println("Loggin succesfull!!!");
             }
 
-            finally {
-                progressIndicator.setVisible(false);
-                disableField(false);
-
+            else {
+                System.out.println("login failed");
             }
+
+
 
         }
 
 
+    }
+
+    private boolean authenticateUser(String email, String password) {
+        Task<Boolean> authenticateTask = new Task<Boolean>() {
+            @Override
+            protected  Boolean call() {
+                try {
+                    return MongoClientConnection.authenticateUser(email, password);
+                }
+
+                catch(Exception e) {
+                    System.out.println("Failed");
+                    return false;
+                }
+            }
+        };
+
+        authenticateTask.setOnRunning(event -> {
+            progressIndicator.setVisible(true);
+            disableField(true);
+        });
+
+        authenticateTask.setOnSucceeded(event -> {
+            progressIndicator.setVisible(false);
+            disableField(false);
+        });
+
+        // Start the task on new thread
+        new Thread(authenticateTask).start();
+
+        return false;
     }
 
     private boolean validateLoginForm(String email, String password) {

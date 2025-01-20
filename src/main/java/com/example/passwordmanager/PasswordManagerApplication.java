@@ -20,6 +20,7 @@ public class PasswordManagerApplication extends Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void switchScene(String fxmlFile) throws Exception {

@@ -15,6 +15,7 @@ module com.example.passwordmanager {
     requires org.mongodb.driver.core;
     requires org.mongodb.driver.sync.client;
     requires org.mongodb.bson;
+    requires jbcrypt;
 
     opens com.example.passwordmanager to javafx.fxml;
     exports com.example.passwordmanager;
