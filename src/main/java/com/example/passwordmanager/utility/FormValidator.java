@@ -11,13 +11,14 @@ public class FormValidator {
         return !fieldString.trim().isEmpty();
     }
 
-    public static Boolean validateEmail(String email) {
-        return true;
+    public static Boolean isValidEmail(String email) {
+        return validateField(email) && Pattern.matches(EMAIL_REGEX, email);
     }
 
-    public static Boolean validatePassword(String password) {
-        return true;
+    public static Boolean isValidPassword(String password) {
+        return validateField(password) && password.length() >= 6;
     }
+
 
 
 }
