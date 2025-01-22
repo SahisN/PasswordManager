@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0"
+            prefWidth="707.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.passwordmanager.controllers.MainAppController">
+   <BorderPane prefHeight="469.0" prefWidth="707.0">
+      <center>
+         <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <Pane fx:id="homePage" prefHeight="484.0" prefWidth="640.0">
+               <Text layoutX="256.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
+                     wrappingWidth="25.13671875"/>
+            </Pane>
+            <Pane fx:id="settingsPage" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <Button layoutX="254.0" layoutY="235.0" mnemonicParsing="false" text="Button"/>
+            </Pane>
+         </StackPane>
+      </center>
+      <left>
+         <Pane prefHeight="469.0" prefWidth="95.0" style="-fx-background-color: #2d2e2e;"
+               BorderPane.alignment="CENTER">
+            <FontAwesomeIconView fx:id="homeIcon" fill="#c9bebe" glyphName="HOME" layoutX="28.0" layoutY="152.0"
+                                 size="40" wrappingWidth="29.0" onMouseClicked="#onHomeIconPress"/>
+            <FontAwesomeIconView fx:id="settingsIcon" fill="#c9bebe" glyphName="COG" layoutX="31.0" layoutY="316.0" size="40" onMouseClicked="#onSettingsIconPress"/>
+            <FontAwesomeIconView fill="#c9bebe" glyphName="STAR" layoutX="30.0" layoutY="236.0" size="40"/>
+         </Pane>
+      </left>
+   </BorderPane>
+</AnchorPane>

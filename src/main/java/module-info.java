@@ -1,5 +1,4 @@
 module com.example.passwordmanager {
-    requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
 
@@ -16,6 +15,8 @@ module com.example.passwordmanager {
     requires org.mongodb.driver.sync.client;
     requires org.mongodb.bson;
     requires jbcrypt;
+    requires de.jensd.fx.glyphs.fontawesome;
+    requires java.desktop;
 
     opens com.example.passwordmanager to javafx.fxml;
     exports com.example.passwordmanager;

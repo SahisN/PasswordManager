@@ -11,6 +11,8 @@ target/
 *.iws
 *.iml
 *.ipr
+!**/src/main/java/com/example/passwordmanager/mongodb/MongoClientConnection.java
+
 
 ### Eclipse ###
 .apt_generated

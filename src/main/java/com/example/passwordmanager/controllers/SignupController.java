@@ -3,6 +3,7 @@ package com.example.passwordmanager.controllers;
 import com.example.passwordmanager.PasswordManagerApplication;
 import com.example.passwordmanager.mongodb.MongoClientConnection;
 import com.example.passwordmanager.utility.FormValidator;
+import com.example.passwordmanager.utility.SceneNavigator;
 import com.example.passwordmanager.utility.ValidationError;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -108,10 +109,6 @@ public class SignupController {
 
     @FXML
     private void switchToLogin() {
-        try {
-            PasswordManagerApplication.switchScene("login.fxml");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        SceneNavigator.switchScene("login.fxml");
     }
 }
