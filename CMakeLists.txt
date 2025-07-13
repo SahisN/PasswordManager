@@ -11,6 +11,9 @@ qt_add_executable(PasswordManager
     passwordmanager.cpp
     passwordmanager.h
     passwordmanager.ui
+    loginpage.h loginpage.cpp loginpage.ui
+    createaccount.h createaccount.cpp createaccount.ui
+
 
 )
 

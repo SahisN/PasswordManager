@@ -17,6 +17,9 @@ public:
     PasswordManager(QWidget *parent = nullptr);
     ~PasswordManager();
 
+private slots:
+    void showCreatedAccountPage();
+
 private:
     Ui::PasswordManager *ui;
 };
