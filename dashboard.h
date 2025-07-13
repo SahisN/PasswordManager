@@ -15,6 +15,11 @@ public:
     explicit Dashboard(QWidget *parent = nullptr);
     ~Dashboard();
 
+private slots:
+    void switch_to_valut_page();
+    void switch_to_password_generator_page();
+    void switch_to_settings_page();
+
 private:
     Ui::Dashboard *ui;
 };

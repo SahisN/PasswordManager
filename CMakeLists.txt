@@ -16,6 +16,7 @@ qt_add_executable(PasswordManager
     dashboard.h dashboard.cpp dashboard.ui
 
 
+
 )
 
 target_link_libraries(PasswordManager
