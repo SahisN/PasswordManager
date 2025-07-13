@@ -7,7 +7,7 @@ LoginPage::LoginPage(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->button1, &QPushButton::clicked, this, &LoginPage::switchToCreateAccount);
+    // connect(ui->button1, &QPushButton::clicked, this, &LoginPage::switchToCreateAccount);
 }
 
 LoginPage::~LoginPage()
