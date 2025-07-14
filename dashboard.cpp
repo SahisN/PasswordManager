@@ -22,7 +22,7 @@ Dashboard::Dashboard(QWidget *parent)
         }
 
         QListWidget::item:hover {
-            border: 1px solid #0078D7; /* blue border on hover */
+            border: 1px solid #0078D7;
         }
 
         QListWidget::item:selected {
@@ -35,10 +35,13 @@ Dashboard::Dashboard(QWidget *parent)
     // QIcon icon = QApplication::style()->standardIcon(QStyle::SP_DriveNetIcon);
     // QListWidgetItem* item = new QListWidgetItem(icon, "Github\njohndoe@gmail.com");
     // ui->listWidget->addItem(item);
-    //  connect(ui->btn_zero, SIGNAL(released()), this, SLOT(digit_btn_released()));
+
+
     connect(ui->VaultButton, SIGNAL(clicked()), this, SLOT(switch_to_valut_page()));
     connect(ui->passwordGeneratorButton, SIGNAL(clicked()), this, SLOT(switch_to_password_generator_page()));
     connect(ui->SettingsButton, SIGNAL(clicked()), this, SLOT(switch_to_settings_page()));
+    connect(ui->addAccountButton, SIGNAL(clicked()), this, SLOT(switch_to_account_creation()));
+    connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(switch_to_account_detail()));
 }
 
 Dashboard::~Dashboard()
@@ -58,5 +61,12 @@ void Dashboard::switch_to_settings_page() {
     ui->dashboardPages->setCurrentIndex(2);
 }
 
+void Dashboard::switch_to_account_detail() {
+    ui->accountPanel->setCurrentIndex(1);
+}
 
+void Dashboard::switch_to_account_creation() {
+    ui->listWidget->clearSelection();
+    ui->accountPanel->setCurrentIndex(2);
+}
 
