@@ -1,6 +1,6 @@
 #include "passwordgeneratorpage.h"
 #include "ui_passwordgeneratorpage.h"
-#include "passwordgenerator.h"
+#include "utility/passwordgenerator.h"
 
 PasswordGeneratorPage::PasswordGeneratorPage(QWidget *parent)
     : QWidget(parent)

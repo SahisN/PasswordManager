@@ -1,8 +1,8 @@
 #include "passwordmanager.h"
 #include "ui_passwordmanager.h"
-#include "loginpage.h"
-#include "createaccount.h"
-#include "dashboard.h"
+#include "pages/login/loginpage.h"
+#include "pages/signup/createaccount.h"
+#include "pages/view/dashboard/dashboard.h"
 
 PasswordManager::PasswordManager(QWidget *parent)
     : QMainWindow(parent)

@@ -11,19 +11,21 @@ qt_add_executable(PasswordManager
     passwordmanager.cpp
     passwordmanager.h
     passwordmanager.ui
-    loginpage.h loginpage.cpp loginpage.ui
-    createaccount.h createaccount.cpp createaccount.ui
-    dashboard.h dashboard.cpp dashboard.ui
-    passwordgeneratorpage.h passwordgeneratorpage.cpp passwordgeneratorpage.ui
-    passwordgenerator.h passwordgenerator.cpp
-    settingspage.h settingspage.cpp settingspage.ui
-    authentication.h authentication.cpp
-    passwordmanagerio.h passwordmanagerio.cpp
 
+    pages/login/loginpage.h pages/login/loginpage.cpp pages/login/loginpage.ui
+    pages/signup/createaccount.h pages/signup/createaccount.cpp pages/signup/createaccount.ui
 
+    pages/view/dashboard/dashboard.h pages/view/dashboard/dashboard.cpp pages/view/dashboard/dashboard.ui
+    pages/view/passwordGenerator/passwordgeneratorpage.h pages/view/passwordGenerator/passwordgeneratorpage.cpp pages/view/passwordGenerator/passwordgeneratorpage.ui
+    pages/view/settings/settingspage.h pages/view/settings/settingspage.cpp pages/view/settings/settingspage.ui
 
+    utility/passwordgenerator.h utility/passwordgenerator.cpp
+    utility/authentication.h utility/authentication.cpp
+    utility/passwordmanagerio.h utility/passwordmanagerio.cpp
+)
 
-
+target_include_directories(PasswordManager PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 target_link_libraries(PasswordManager

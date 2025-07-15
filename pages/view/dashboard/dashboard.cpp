@@ -1,7 +1,7 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
-#include "passwordgeneratorpage.h"
-#include "settingspage.h"
+#include "../passwordGenerator/passwordgeneratorpage.h"
+#include "../settings/settingspage.h"
 
 Dashboard::Dashboard(QWidget *parent)
     : QWidget(parent)
