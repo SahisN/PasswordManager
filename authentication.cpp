@@ -37,7 +37,7 @@ QJsonObject Authentication::find_user(const QString& email) {
 }
 
 bool Authentication::user_exists(const QString& email) {
-    QJsonObject userObject = find_user(email);
+    const QJsonObject userObject = find_user(email);
 
     if(userObject.isEmpty()) {
         return false;
@@ -71,17 +71,19 @@ bool Authentication::authenticate_user(const QString& email, const QString& pass
     // check if user exist
     if(!user_exists(email)) return false;
 
-    // get user data
-    QJsonArray users = read_json();
+    // find the user
+    const QJsonObject user = find_user(email);
 
-    // find the user with matching email
-    for(const QJsonValue &userData : std::as_const(users)) {
-        if(!userData.isObject()) {
+    // verify user data is not null
+    if(user.isEmpty()) return false;
 
-        }
+
+    // check if the password matches
+    if(user.contains("password") && user["password"] == password) {
+        return true;
     }
 
-
+    return false;
 
 }
 

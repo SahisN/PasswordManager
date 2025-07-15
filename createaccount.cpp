@@ -1,7 +1,7 @@
 #include "createaccount.h"
 #include "ui_createaccount.h"
 #include "authentication.h"
-#include "QDebug";
+#include "QDebug"
 
 CreateAccount::CreateAccount(QWidget *parent)
     : QWidget(parent)
@@ -19,9 +19,25 @@ CreateAccount::~CreateAccount()
 }
 
 void CreateAccount::create_user_account() {
-    Authentication authentication{"PasswordManagerData/user.json"};
-    bool exist = authentication.user_exists("yo@gmail.com");
-    qDebug() << exist << '\n';
+    const QString email = ui->emailInput->text();
+    const QString password = ui->passwordInput->text();
+    const QString confirmPassword = ui->confirmPasswordInput->text();
+
+    // vadiate input fields here
+    if(!email.isEmpty() && !password.isEmpty() && password == confirmPassword) {
+        // create user data here
+        Authentication authentication{"PasswordManagerData/user.json"};
+        bool exist = authentication.authenticate_user(ui->emailInput->text(), ui->passwordInput->text());
+        qDebug() << exist;
+    }
+
+    else {
+
+    }
+
+
+
+
 }
 
 
