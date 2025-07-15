@@ -1,0 +1,62 @@
+#include "passwordmanagerio.h"
+#include <QString>
+#include <QJsonArray>
+#include <QFile>
+#include <QJsonDocument>
+#include <QDebug>
+
+PasswordManagerIO::PasswordManagerIO(QString filePath)
+    : filePath(filePath)
+{
+
+}
+
+QJsonArray PasswordManagerIO::read_json() {
+    QFile file(filePath);
+    QJsonArray data;
+
+    // checks whether file exists or not.
+    if(!file.open(QIODevice::ReadOnly)) {
+
+        // returns empty data if file doesn't exist
+        qWarning() << "Failed to open file: " << filePath;
+        return data;
+    }
+
+    // Storing the file data in ByteArray & closing the file
+    QByteArray fileData = file.readAll();
+    file.close();
+
+    // Converts raw JSON data to QJSONDocument
+    QJsonDocument doc = QJsonDocument::fromJson(fileData);
+
+    // Checks the document is contained in an array json
+    if(doc.isArray()) {
+        // extract the data from array
+        data = doc.array();
+    }
+
+    else {
+        qWarning() << "JSON is not an array in: " << filePath;
+    }
+
+    return data;
+}
+
+
+bool PasswordManagerIO::write_json(const QJsonArray& data) {
+    QFile file(filePath);
+
+    // checks whether the file exist
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+        qWarning() << "Failed to open file for writing: " << filePath;
+        return false;
+    }
+
+    // Convert the QJsonArray data to QJsonDocument & close the file
+    QJsonDocument doc(data);
+    file.write(doc.toJson(QJsonDocument::Indented));
+    file.close();
+
+    return true;
+}

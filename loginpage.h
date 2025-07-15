@@ -16,7 +16,10 @@ public:
     ~LoginPage();
 
 signals:
-    void switchToCreateAccount();
+    void switch_to_create_account();
+
+private slots:
+    void login();
 
 private:
     Ui::LoginPage *ui;

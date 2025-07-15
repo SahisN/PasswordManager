@@ -6,7 +6,7 @@ class PasswordGenerator
 {
 public:
     PasswordGenerator(int passwordLength,  bool includeUpperCaseAlpha, bool includeNumbers, bool includeSymbols);
-    QString generatePassword();
+    QString generate_password();
 
 private:
     int passwordLength;
@@ -14,7 +14,7 @@ private:
     bool includeNumericCharacter;
     bool includeSymbols;
 
-    QString generateCharacterPool();
+    QString generate_character_pool();
 };
 
 

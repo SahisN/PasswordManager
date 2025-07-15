@@ -12,9 +12,9 @@ PasswordGenerator::PasswordGenerator(int passwordLength,  bool includeUpperCaseA
 
 }
 
-QString PasswordGenerator::generatePassword() {
+QString PasswordGenerator::generate_password() {
     srand(time(0));
-    const QString characterPool = generateCharacterPool();
+    const QString characterPool = generate_character_pool();
     const int poolSize = characterPool.size();
 
     QString password;
@@ -28,7 +28,7 @@ QString PasswordGenerator::generatePassword() {
         QChar currentChar = characterPool[randomIndex];
 
         // prevents repeating same character in sequence
-        if (prevChar.isNull() && prevChar == currentChar)
+        if (!prevChar.isNull() && prevChar == currentChar)
         {
             continue;
         }
@@ -42,7 +42,7 @@ QString PasswordGenerator::generatePassword() {
     return password;
 }
 
-QString PasswordGenerator::generateCharacterPool() {
+QString PasswordGenerator::generate_character_pool() {
     QString characterPool = "abcdefghijklmnopqrstuvwxyz";
     const QString upperCaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const QString numericCharacters = "0123456789";

@@ -15,6 +15,12 @@ public:
     explicit CreateAccount(QWidget *parent = nullptr);
     ~CreateAccount();
 
+signals:
+    void switch_to_login();
+
+private slots:
+    void create_user_account();
+
 private:
     Ui::CreateAccount *ui;
 };

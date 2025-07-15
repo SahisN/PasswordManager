@@ -18,7 +18,8 @@ public:
     ~PasswordManager();
 
 private slots:
-    void showCreatedAccountPage();
+    void go_to_create_account_page();
+    void go_to_login_page();
 
 private:
     Ui::PasswordManager *ui;

@@ -1,6 +1,7 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
 #include "passwordgeneratorpage.h"
+#include "settingspage.h"
 
 Dashboard::Dashboard(QWidget *parent)
     : QWidget(parent)
@@ -34,7 +35,10 @@ Dashboard::Dashboard(QWidget *parent)
         )");
 
         PasswordGeneratorPage* passwordGeneratorPage = new PasswordGeneratorPage(this);
+        SettingsPage* settingPage = new SettingsPage(this);
+
         ui->dashboardPages->insertWidget(1, passwordGeneratorPage);
+        ui->dashboardPages->insertWidget(2, settingPage);
 
     // QIcon icon = QApplication::style()->standardIcon(QStyle::SP_DriveNetIcon);
     // QListWidgetItem* item = new QListWidgetItem(icon, "Github\njohndoe@gmail.com");
@@ -65,4 +69,11 @@ void Dashboard::switch_to_settings_page() {
     ui->dashboardPages->setCurrentIndex(2);
 }
 
+void Dashboard::switch_to_account_creation() {
+    ui->accountPanel->setCurrentIndex(2);
+}
+
+void Dashboard::switch_to_account_detail() {
+    ui->accountPanel->setCurrentIndex(1);
+}
 

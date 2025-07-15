@@ -7,12 +7,17 @@ LoginPage::LoginPage(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // connect(ui->button1, &QPushButton::clicked, this, &LoginPage::switchToCreateAccount);
+    connect(ui->createAccountButton, &QPushButton::clicked, this, &LoginPage::switch_to_create_account);
+    connect(ui->loginButton, SIGNAL(clicked()), this, SLOT(login()));
 }
 
 LoginPage::~LoginPage()
 {
     delete ui;
+}
+
+void LoginPage::login() {
+    qDebug() << "Login";
 }
 
 

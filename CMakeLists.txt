@@ -16,6 +16,10 @@ qt_add_executable(PasswordManager
     dashboard.h dashboard.cpp dashboard.ui
     passwordgeneratorpage.h passwordgeneratorpage.cpp passwordgeneratorpage.ui
     passwordgenerator.h passwordgenerator.cpp
+    settingspage.h settingspage.cpp settingspage.ui
+    authentication.h authentication.cpp
+    passwordmanagerio.h passwordmanagerio.cpp
+
 
 
 
