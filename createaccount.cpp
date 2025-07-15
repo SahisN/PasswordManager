@@ -20,7 +20,8 @@ CreateAccount::~CreateAccount()
 
 void CreateAccount::create_user_account() {
     Authentication authentication{"PasswordManagerData/user.json"};
-    authentication.user_exists("a");
+    bool exist = authentication.user_exists("yo@gmail.com");
+    qDebug() << exist << '\n';
 }
 
 
