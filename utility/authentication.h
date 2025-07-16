@@ -9,7 +9,7 @@ class Authentication : public PasswordManagerIO
 {
 public:
     Authentication(const QString& filePath);
-    bool user_exists(const QString& email);
+    bool user_exist(const QString& email, const QJsonArray& users);
     bool authenticate_user(const QString& email, const QString& password);
     bool create_new_user(const QString& email, const QString& password);
 

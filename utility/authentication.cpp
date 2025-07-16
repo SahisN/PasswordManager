@@ -36,22 +36,39 @@ QJsonObject Authentication::find_user(const QString& email) {
     return {};
 }
 
-bool Authentication::user_exists(const QString& email) {
-    const QJsonObject userObject = find_user(email);
+/**
+ * @brief Authentication::user_exist
+ * @param email
+ * @param users
+ * @return bool
+ * @ Returns True if it can find user in the given QJsonArray
+ * @ Return False if it can't find user in the given QJsonArray
+ */
+bool Authentication::user_exist(const QString& email, const QJsonArray& users) {
+    for(const QJsonValue &userData : std::as_const(users)) {
 
-    if(userObject.isEmpty()) {
-        return false;
+        if(!userData.isObject()) {
+            continue;
+        }
+        // convert QJsonValue into Object
+        QJsonObject user = userData.toObject();
+        qDebug() << userData << '\n';
+
+        // check if email exists and check if email matches
+        if(user.contains("email") && user["email"].toString() == email) {
+            return true;
+        }
     }
 
-    return true;
+    return false;
 }
 
 bool Authentication::create_new_user(const QString& email, const QString& password) {
-    // check if user already has account
-    if(user_exists(email)) return false;
-
     // gather existing data from target file
     QJsonArray users = read_json();
+
+    // check if user exist in the file
+    if(user_exist(email, users)) return false;
 
     // create a new user data
     QJsonObject newUser;
@@ -62,15 +79,10 @@ bool Authentication::create_new_user(const QString& email, const QString& passwo
     users.append(newUser);
 
     // update the target file with new users data
-    const bool isSuccessful = write_json(users);
-
-    return isSuccessful;
+    return write_json(users);
 }
 
 bool Authentication::authenticate_user(const QString& email, const QString& password) {
-    // check if user exist
-    if(!user_exists(email)) return false;
-
     // find the user
     const QJsonObject user = find_user(email);
 

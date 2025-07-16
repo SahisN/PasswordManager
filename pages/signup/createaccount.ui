@@ -47,7 +47,21 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="emailInput"/>
+         <widget class="QLineEdit" name="emailInput">
+          <property name="inputMethodHints">
+           <set>Qt::InputMethodHint::ImhEmailCharactersOnly</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="emailErrorText">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="margin">
+           <number>3</number>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="passwordLabel">
@@ -57,7 +71,24 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="passwordInput"/>
+         <widget class="QLineEdit" name="passwordInput">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="echoMode">
+           <enum>QLineEdit::EchoMode::Password</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="passwordErrorText">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="margin">
+           <number>3</number>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="confirmPasswordLabel">
@@ -67,7 +98,24 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="confirmPasswordInput"/>
+         <widget class="QLineEdit" name="confirmPasswordInput">
+          <property name="echoMode">
+           <enum>QLineEdit::EchoMode::Password</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="confirmPasswordErrorText">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::TextFormat::PlainText</enum>
+          </property>
+          <property name="margin">
+           <number>3</number>
+          </property>
+         </widget>
         </item>
         <item alignment="Qt::AlignmentFlag::AlignHCenter">
          <widget class="QPushButton" name="submitButton">

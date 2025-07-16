@@ -17,9 +17,10 @@ public:
 
 signals:
     void switch_to_create_account();
+    void switch_to_dashboard();
 
 private slots:
-    void login();
+    void handle_login();
 
 private:
     Ui::LoginPage *ui;

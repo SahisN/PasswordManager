@@ -20,6 +20,7 @@ public:
 private slots:
     void go_to_create_account_page();
     void go_to_login_page();
+    void go_to_dashboard();
 
 private:
     Ui::PasswordManager *ui;

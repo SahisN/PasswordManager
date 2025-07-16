@@ -22,6 +22,7 @@ qt_add_executable(PasswordManager
     utility/passwordgenerator.h utility/passwordgenerator.cpp
     utility/authentication.h utility/authentication.cpp
     utility/passwordmanagerio.h utility/passwordmanagerio.cpp
+
 )
 
 target_include_directories(PasswordManager PRIVATE

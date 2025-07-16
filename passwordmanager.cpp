@@ -25,6 +25,7 @@ PasswordManager::PasswordManager(QWidget *parent)
     ui->stackedWidget->setCurrentIndex(1);
 
     connect(loginPage, &LoginPage::switch_to_create_account, this, &PasswordManager::go_to_create_account_page);
+    connect(loginPage, &LoginPage::switch_to_dashboard, this, &PasswordManager::go_to_dashboard);
     connect(createAccountPage, &CreateAccount::switch_to_login, this, &PasswordManager::go_to_login_page);
 }
 
@@ -33,11 +34,17 @@ PasswordManager::~PasswordManager()
     delete ui;
 }
 
+void PasswordManager::go_to_login_page()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
 void PasswordManager::go_to_create_account_page()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-void PasswordManager::go_to_login_page() {
-    ui->stackedWidget->setCurrentIndex(0);
+void PasswordManager::go_to_dashboard()
+{
+    ui->stackedWidget->setCurrentIndex(2);
 }
