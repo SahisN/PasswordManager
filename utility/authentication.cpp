@@ -5,6 +5,9 @@
 #include <QJsonObject>
 #include <QDebug>
 #include <QJsonValue>
+#include <QByteArray>
+#include <QCryptographicHash>
+#include <QString>
 
 Authentication::Authentication(const QString& filePath)
     : PasswordManagerIO(filePath)
@@ -12,6 +15,17 @@ Authentication::Authentication(const QString& filePath)
 
 }
 
+
+QString Authentication::secure_hash(const QString& unhashed_string) {
+    // convert the string to utf-8 byte array
+    QByteArray utfByteArray = unhashed_string.toUtf8();
+
+    // hash the array using Sha256
+    QByteArray hashedArray = QCryptographicHash::hash(utfByteArray, QCryptographicHash::Sha256);
+
+    // convert the array into hex array then convert the hex array to string
+    return QString(hashedArray.toHex());
+}
 
 QJsonObject Authentication::find_user(const QString& email) {
 
@@ -64,16 +78,19 @@ bool Authentication::user_exist(const QString& email, const QJsonArray& users) {
 }
 
 bool Authentication::create_new_user(const QString& email, const QString& password) {
+    const QString hashed_email = secure_hash(email);
+    const QString hashed_password = secure_hash(password);
+
     // gather existing data from target file
     QJsonArray users = read_json();
 
     // check if user exist in the file
-    if(user_exist(email, users)) return false;
+    if(user_exist(hashed_email, users)) return false;
 
-    // create a new user data
+    // create a new hashed user data
     QJsonObject newUser;
-    newUser["email"] = email;
-    newUser["password"] = password;
+    newUser["email"] = hashed_email;
+    newUser["password"] = hashed_password;
 
     // add the new user data to existing data
     users.append(newUser);
@@ -83,15 +100,20 @@ bool Authentication::create_new_user(const QString& email, const QString& passwo
 }
 
 bool Authentication::authenticate_user(const QString& email, const QString& password) {
-    // find the user
-    const QJsonObject user = find_user(email);
+    // hash the email
+    const QString hashed_email = secure_hash(email);
 
-    // verify user data is not null
+    // find the user by searching the hash email signature
+    const QJsonObject user = find_user(hashed_email);
+
+    // verify user data is not null, exit the function is data is null
     if(user.isEmpty()) return false;
 
+    // if user exist, hash the password
+    const QString hashed_password = secure_hash(password);
 
-    // check if the password matches
-    if(user.contains("password") && user["password"] == password) {
+    // compare the hash password signature with another hash password that stored in file
+    if(user.contains("password") && user["password"] == hashed_password) {
         return true;
     }
 

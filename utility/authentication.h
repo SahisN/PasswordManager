@@ -15,6 +15,7 @@ public:
 
 private:
     QJsonObject find_user(const QString& email);
+    QString secure_hash(const QString& unhashed_string);
 };
 
 #endif // AUTHENTICATION_H
