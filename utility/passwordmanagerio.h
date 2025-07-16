@@ -12,6 +12,7 @@ public:
 
 private:
     QString filePath;
+    void ensure_directory_existance();
 };
 
 #endif // PASSWORDMANAGERIO_H

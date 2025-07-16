@@ -3,11 +3,43 @@
 #include <QJsonArray>
 #include <QFile>
 #include <QJsonDocument>
+#include <QDir>
+#include <QFileInfo>
 #include <QDebug>
+
 
 PasswordManagerIO::PasswordManagerIO(QString filePath)
     : filePath(filePath)
 {
+
+}
+
+void PasswordManagerIO::ensure_directory_existance() {
+    // filters file name from directory. "test/user1/user.json" -> test/user1
+    const QFileInfo filePathInfo{filePath};
+
+    qDebug() << filePathInfo.path() << "\n";
+
+    QDir dir;
+    // if directory doesn't exist, create directory
+    if(!dir.exists(filePathInfo.path())) {
+
+        // create parent directory & sub-directories
+        if(dir.mkpath(filePathInfo.path())) {
+            qDebug() << "dir created \n";
+        }
+
+        // notify user if dir creation failed
+        else {
+            qDebug() << "creation failed! \n";
+        }
+    }
+
+    // debug purpose [Temp]
+    else {
+        qDebug() << "dir already exist";
+    }
+
 
 }
 
@@ -45,6 +77,9 @@ QJsonArray PasswordManagerIO::read_json() {
 
 
 bool PasswordManagerIO::write_json(const QJsonArray& data) {
+    // ensure directory existance prior to writing
+    ensure_directory_existance();
+
     QFile file(filePath);
 
     // checks whether the file exist
