@@ -2,10 +2,12 @@
 #include "ui_dashboard.h"
 #include "../passwordGenerator/passwordgeneratorpage.h"
 #include "../settings/settingspage.h"
+#include <QDebug>
 
-Dashboard::Dashboard(QWidget *parent)
+Dashboard::Dashboard(QWidget *parent, const QString &email)
     : QWidget(parent)
     , ui(new Ui::Dashboard)
+    , email(email)
 {
     ui->setupUi(this);
 
@@ -43,7 +45,7 @@ Dashboard::Dashboard(QWidget *parent)
     // QIcon icon = QApplication::style()->standardIcon(QStyle::SP_DriveNetIcon);
     // QListWidgetItem* item = new QListWidgetItem(icon, "Github\njohndoe@gmail.com");
     // ui->listWidget->addItem(item);
-
+        qDebug() << email << "\n";
 
     connect(ui->VaultButton, SIGNAL(clicked()), this, SLOT(switch_to_valut_page()));
     connect(ui->passwordGeneratorButton, SIGNAL(clicked()), this, SLOT(switch_to_password_generator_page()));

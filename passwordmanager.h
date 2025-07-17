@@ -2,6 +2,7 @@
 #define PASSWORDMANAGER_H
 
 #include <QMainWindow>
+#include "pages/view/dashboard/dashboard.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,9 +21,11 @@ public:
 private slots:
     void go_to_create_account_page();
     void go_to_login_page();
-    void go_to_dashboard();
+    void go_to_dashboard(const QString &email);
 
 private:
     Ui::PasswordManager *ui;
+    Dashboard *dashboardPagePtr;
+
 };
 #endif // PASSWORDMANAGER_H

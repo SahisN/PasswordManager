@@ -9,22 +9,15 @@
 #include <QCryptographicHash>
 #include <QString>
 
-Authentication::Authentication(const QString& filePath)
+Authentication::Authentication(const QString &filePath)
     : PasswordManagerIO(filePath)
 {
 
 }
 
-
-QString Authentication::secure_hash(const QString& unhashed_string) {
-    // convert the string to utf-8 byte array
-    QByteArray utfByteArray = unhashed_string.toUtf8();
-
-    // hash the array using Sha256
-    QByteArray hashedArray = QCryptographicHash::hash(utfByteArray, QCryptographicHash::Sha256);
-
-    // convert the array into hex array then convert the hex array to string
-    return QString(hashedArray.toHex());
+// adds hashed_email & hashed_password together and creates a new hash as vault key
+QString Authentication::generate_vault_key(const QString& hashed_email, const QString& hashed_password) {
+    return secure_hash(hashed_email + hashed_password);
 }
 
 QJsonObject Authentication::find_user(const QString& email) {
@@ -99,7 +92,7 @@ bool Authentication::create_new_user(const QString& email, const QString& passwo
     return write_json(users);
 }
 
-bool Authentication::authenticate_user(const QString& email, const QString& password) {
+QString Authentication::authenticate_user(const QString& email, const QString& password) {
     // hash the email
     const QString hashed_email = secure_hash(email);
 
@@ -107,17 +100,16 @@ bool Authentication::authenticate_user(const QString& email, const QString& pass
     const QJsonObject user = find_user(hashed_email);
 
     // verify user data is not null, exit the function is data is null
-    if(user.isEmpty()) return false;
+    if(user.isEmpty()) return "";
 
     // if user exist, hash the password
     const QString hashed_password = secure_hash(password);
 
     // compare the hash password signature with another hash password that stored in file
     if(user.contains("password") && user["password"] == hashed_password) {
-        return true;
+        return generate_vault_key(hashed_email, hashed_password);
     }
 
-    return false;
-
+    return "";
 }
 

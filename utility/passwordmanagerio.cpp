@@ -5,13 +5,16 @@
 #include <QJsonDocument>
 #include <QDir>
 #include <QFileInfo>
+#include <QCryptographicHash>
+#include <QCoreApplication>
 #include <QDebug>
 
 
-PasswordManagerIO::PasswordManagerIO(QString filePath)
+PasswordManagerIO::PasswordManagerIO(const QString &filePath)
     : filePath(filePath)
 {
-
+    QString basePath = QCoreApplication::applicationDirPath() + filePath;
+    qDebug() << basePath;
 }
 
 void PasswordManagerIO::ensure_directory_existance() {
@@ -41,6 +44,17 @@ void PasswordManagerIO::ensure_directory_existance() {
     }
 
 
+}
+
+QString PasswordManagerIO::secure_hash(const QString& plainString) {
+    // convert the string to utf-8 byte array
+    QByteArray utfByteArray = plainString.toUtf8();
+
+    // hash the array using Sha256
+    QByteArray hashedArray = QCryptographicHash::hash(utfByteArray, QCryptographicHash::Sha256);
+
+    // convert the array into hex array then convert the hex array to string
+    return QString(hashedArray.toHex());
 }
 
 QJsonArray PasswordManagerIO::read_json() {

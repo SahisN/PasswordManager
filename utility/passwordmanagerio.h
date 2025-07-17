@@ -6,12 +6,13 @@
 class PasswordManagerIO
 {
 public:
-    PasswordManagerIO(QString filePath);
+    PasswordManagerIO(const QString& filePath);
     QJsonArray read_json();
     bool write_json(const QJsonArray& data);
+    QString secure_hash(const QString& plainString);
 
 private:
-    QString filePath;
+    const QString filePath;
     void ensure_directory_existance();
 };
 

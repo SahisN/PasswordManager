@@ -4,9 +4,10 @@
 #include <QRegularExpression>
 #include "QDebug"
 
-CreateAccount::CreateAccount(QWidget *parent)
+CreateAccount::CreateAccount(QWidget *parent, Authentication *authPtr)
     : QWidget(parent)
     , ui(new Ui::CreateAccount)
+    , authPtr(authPtr)
 {
     ui->setupUi(this);
 
@@ -46,8 +47,7 @@ void CreateAccount::create_user_account() {
     // vadiate input fields here
     if((emailRegex.match(email).hasMatch()) && password.size() >= requiredPasswordSize && password == confirmPassword) {
         // create user data here
-        Authentication authentication{"PasswordManagerData/user.json"};
-        accountCreated = authentication.create_new_user(ui->emailInput->text(), ui->passwordInput->text());
+        accountCreated = authPtr->create_new_user(ui->emailInput->text(), ui->passwordInput->text());
         qDebug() << accountCreated;
 
         // if account is created successfully, switch to login page

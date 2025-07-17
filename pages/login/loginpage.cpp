@@ -5,9 +5,10 @@
 #include <QRegularExpression>
 #include <QString>
 
-LoginPage::LoginPage(QWidget *parent)
+LoginPage::LoginPage(QWidget *parent, Authentication *authPtr)
     : QWidget(parent)
     , ui(new Ui::LoginPage)
+    , authPtr(authPtr)
 {
     ui->setupUi(this);
 
@@ -38,11 +39,10 @@ void LoginPage::handle_login() {
 
     // if password & email is valid then authenticate user
     else {
-        Authentication authentication{"PasswordManagerData/user.json"};
-        bool loginSuccessful = authentication.authenticate_user(email, password);
+        QString vaultKey = authPtr->authenticate_user(email, password);
 
-        if(loginSuccessful) {
-            emit LoginPage::switch_to_dashboard();
+        if(!vaultKey.isEmpty()) {
+            emit LoginPage::switch_to_dashboard(vaultKey);
         }
 
         // if login isn't successful then notify user

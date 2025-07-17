@@ -10,12 +10,12 @@ class Authentication : public PasswordManagerIO
 public:
     Authentication(const QString& filePath);
     bool user_exist(const QString& email, const QJsonArray& users);
-    bool authenticate_user(const QString& email, const QString& password);
+    QString authenticate_user(const QString& email, const QString& password);
     bool create_new_user(const QString& email, const QString& password);
 
 private:
     QJsonObject find_user(const QString& email);
-    QString secure_hash(const QString& unhashed_string);
+    QString generate_vault_key(const QString& hashed_email, const QString& hashed_password);
 };
 
 #endif // AUTHENTICATION_H

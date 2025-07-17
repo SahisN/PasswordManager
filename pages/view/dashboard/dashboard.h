@@ -12,7 +12,7 @@ class Dashboard : public QWidget
     Q_OBJECT
 
 public:
-    explicit Dashboard(QWidget *parent = nullptr);
+    explicit Dashboard(QWidget *parent, const QString &email);
     ~Dashboard();
 
 private slots:
@@ -24,6 +24,7 @@ private slots:
 
 private:
     Ui::Dashboard *ui;
+    const QString &email;
 };
 
 #endif // DASHBOARD_H
