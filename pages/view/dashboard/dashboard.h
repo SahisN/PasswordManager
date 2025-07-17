@@ -1,6 +1,5 @@
 #ifndef DASHBOARD_H
 #define DASHBOARD_H
-
 #include <QWidget>
 
 namespace Ui {
@@ -12,7 +11,7 @@ class Dashboard : public QWidget
     Q_OBJECT
 
 public:
-    explicit Dashboard(QWidget *parent, const QString &email);
+    explicit Dashboard(QWidget *parent, const QString &vaultKey);
     ~Dashboard();
 
 private slots:
@@ -24,7 +23,7 @@ private slots:
 
 private:
     Ui::Dashboard *ui;
-    const QString &email;
+    const QString &vaultKey;
 };
 
 #endif // DASHBOARD_H

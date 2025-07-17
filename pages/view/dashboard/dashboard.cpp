@@ -2,14 +2,17 @@
 #include "ui_dashboard.h"
 #include "../passwordGenerator/passwordgeneratorpage.h"
 #include "../settings/settingspage.h"
+#include "utility/platformaccount.h"
+#include <QStringList>
 #include <QDebug>
 
-Dashboard::Dashboard(QWidget *parent, const QString &email)
+Dashboard::Dashboard(QWidget *parent, const QString &vaultKey)
     : QWidget(parent)
     , ui(new Ui::Dashboard)
-    , email(email)
+    , vaultKey(vaultKey)
 {
     ui->setupUi(this);
+
 
     ui->listWidget->setStyleSheet(R"(
         QListWidget {
@@ -42,16 +45,24 @@ Dashboard::Dashboard(QWidget *parent, const QString &email)
         ui->dashboardPages->insertWidget(1, passwordGeneratorPage);
         ui->dashboardPages->insertWidget(2, settingPage);
 
-    // QIcon icon = QApplication::style()->standardIcon(QStyle::SP_DriveNetIcon);
-    // QListWidgetItem* item = new QListWidgetItem(icon, "Github\njohndoe@gmail.com");
-    // ui->listWidget->addItem(item);
-        qDebug() << email << "\n";
+        // QIcon icon = QApplication::style()->standardIcon(QStyle::SP_DriveNetIcon);
+        // QListWidgetItem* item = new QListWidgetItem(icon, "Github\njohndoe@gmail.com");
+        // ui->listWidget->addItem(item);
 
-    connect(ui->VaultButton, SIGNAL(clicked()), this, SLOT(switch_to_valut_page()));
-    connect(ui->passwordGeneratorButton, SIGNAL(clicked()), this, SLOT(switch_to_password_generator_page()));
-    connect(ui->SettingsButton, SIGNAL(clicked()), this, SLOT(switch_to_settings_page()));
-    connect(ui->addAccountButton, SIGNAL(clicked()), this, SLOT(switch_to_account_creation()));
-    connect(ui->listWidget, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(switch_to_account_detail()));
+        // QListWidgetItem* item = new QListWidgetItem("Custom Text");
+        // item->setToolTip("This is a tooltip");
+        // ui->listWidget->addItem(item);
+        qDebug() << vaultKey << "\n";
+
+        QList<PlatformAccount> accountData = { {"Google", "test@gmail.com", "test1234"} };
+        qDebug() << accountData[0].platformName;
+
+
+        connect(ui->VaultButton, &QPushButton::clicked, this, &Dashboard::switch_to_valut_page);
+        connect(ui->passwordGeneratorButton, &QPushButton::clicked, this, &Dashboard::switch_to_password_generator_page);
+        connect(ui->SettingsButton, &QPushButton::clicked, this, &Dashboard::switch_to_settings_page);
+        connect(ui->addAccountButton, &QPushButton::clicked, this, &Dashboard::switch_to_account_creation);
+        connect(ui->listWidget, &QListWidget::itemClicked, this, &Dashboard::switch_to_account_detail);
 }
 
 Dashboard::~Dashboard()
@@ -77,5 +88,6 @@ void Dashboard::switch_to_account_creation() {
 
 void Dashboard::switch_to_account_detail() {
     ui->accountPanel->setCurrentIndex(1);
+    qDebug() << ui->listWidget->currentRow();
 }
 

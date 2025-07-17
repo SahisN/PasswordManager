@@ -22,6 +22,8 @@ qt_add_executable(PasswordManager
     utility/passwordgenerator.h utility/passwordgenerator.cpp
     utility/authentication.h utility/authentication.cpp
     utility/passwordmanagerio.h utility/passwordmanagerio.cpp
+    utility/userdatahandler.h utility/userdatahandler.cpp
+    utility/platformaccount.h
 
 )
 
