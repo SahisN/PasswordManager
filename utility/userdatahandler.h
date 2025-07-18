@@ -6,12 +6,19 @@
 class UserDataHandler : public PasswordManagerIO
 {
 public:
-    UserDataHandler(const QString &filePath);
-    QList<PlatformAccount> fetchAccountData(const QString &vaultKey);
-    bool updateAccountData();
+    QJsonArray encryptedData;
+    QList<PlatformAccount> accountData;
+    UserDataHandler(const QString &filePath, const QString &vaultKey);
+    QJsonArray fetch_account_data();
+    bool sync_account_data(const QString &platformName, const QString &platformEmail, const QString &platformPassword);
 
 private:
-    void updateAccountDataList();
+    void update_account_list(QList<PlatformAccount> &accountData);
+    QList<PlatformAccount> load_account_list(QJsonArray &encryptedData);
+    const QString vaultKey;
+    const QString platformNameKey;
+    const QString emailNameKey;
+    const QString passwordNameKey;
 };
 
 #endif // USERDATAHANDLER_H

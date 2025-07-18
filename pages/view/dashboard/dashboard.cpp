@@ -2,8 +2,10 @@
 #include "ui_dashboard.h"
 #include "../passwordGenerator/passwordgeneratorpage.h"
 #include "../settings/settingspage.h"
-#include "utility/platformaccount.h"
+#include "utility/userdatahandler.h"
+#include <QJsonArray>
 #include <QStringList>
+#include <QJsonObject>
 #include <QDebug>
 
 Dashboard::Dashboard(QWidget *parent, const QString &vaultKey)
@@ -41,6 +43,7 @@ Dashboard::Dashboard(QWidget *parent, const QString &vaultKey)
 
         PasswordGeneratorPage* passwordGeneratorPage = new PasswordGeneratorPage(this);
         SettingsPage* settingPage = new SettingsPage(this);
+        userDataHandler = new UserDataHandler("PasswordManagerData/users/pass.json", vaultKey);
 
         ui->dashboardPages->insertWidget(1, passwordGeneratorPage);
         ui->dashboardPages->insertWidget(2, settingPage);
@@ -49,20 +52,22 @@ Dashboard::Dashboard(QWidget *parent, const QString &vaultKey)
         // QListWidgetItem* item = new QListWidgetItem(icon, "Github\njohndoe@gmail.com");
         // ui->listWidget->addItem(item);
 
-        // QListWidgetItem* item = new QListWidgetItem("Custom Text");
-        // item->setToolTip("This is a tooltip");
-        // ui->listWidget->addItem(item);
         qDebug() << vaultKey << "\n";
+        qDebug() << userDataHandler->accountData.size();
+        qDebug() << userDataHandler->encryptedData.size();
+        load_list_view();
 
-        QList<PlatformAccount> accountData = { {"Google", "test@gmail.com", "test1234"} };
-        qDebug() << accountData[0].platformName;
-
-
-        connect(ui->VaultButton, &QPushButton::clicked, this, &Dashboard::switch_to_valut_page);
+        // navigation
         connect(ui->passwordGeneratorButton, &QPushButton::clicked, this, &Dashboard::switch_to_password_generator_page);
         connect(ui->SettingsButton, &QPushButton::clicked, this, &Dashboard::switch_to_settings_page);
         connect(ui->addAccountButton, &QPushButton::clicked, this, &Dashboard::switch_to_account_creation);
+        connect(ui->VaultButton, &QPushButton::clicked, this, &Dashboard::switch_to_valut_page);
+
+        // list widget detection
         connect(ui->listWidget, &QListWidget::itemClicked, this, &Dashboard::switch_to_account_detail);
+
+        // new accout submission
+        connect(ui->addNewAccountBtn, &QPushButton::clicked, this, &Dashboard::add_new_account);
 }
 
 Dashboard::~Dashboard()
@@ -90,4 +95,30 @@ void Dashboard::switch_to_account_detail() {
     ui->accountPanel->setCurrentIndex(1);
     qDebug() << ui->listWidget->currentRow();
 }
+
+void Dashboard::load_list_view() {
+    QList<PlatformAccount> &accountData =  userDataHandler->accountData;
+    for(int index = 0; index < accountData.size(); index++) {
+        ui->listWidget->addItem(accountData[index].platformName);
+    }
+}
+
+void Dashboard::add_new_account() {
+    const QString platformName = ui->platformNameInput->text();
+    const QString platformEmail = ui->platformEmailInput->text();
+    const QString platformPassword = ui->platformPasswordInput->text();
+
+
+    const bool isSuccessful = userDataHandler->sync_account_data(platformName, platformEmail, platformPassword);
+    if(isSuccessful) {
+        const QString data = userDataHandler->accountData.last().platformName;
+        ui->listWidget->addItem(data);
+    }
+
+    // reset input fields
+    ui->platformEmailInput->clear();
+    ui->platformNameInput->clear();
+    ui->platformPasswordInput->clear();
+}
+
 

@@ -1,6 +1,8 @@
 #ifndef DASHBOARD_H
 #define DASHBOARD_H
+#include "utility/userdatahandler.h"
 #include <QWidget>
+
 
 namespace Ui {
 class Dashboard;
@@ -20,10 +22,13 @@ private slots:
     void switch_to_settings_page();
     void switch_to_account_creation();
     void switch_to_account_detail();
+    void load_list_view();
+    void add_new_account();
 
 private:
     Ui::Dashboard *ui;
     const QString &vaultKey;
+    UserDataHandler* userDataHandler = nullptr;
 };
 
 #endif // DASHBOARD_H

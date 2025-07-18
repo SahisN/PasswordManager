@@ -70,14 +70,7 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
-            <widget class="QListWidget" name="listWidget">
-             <item>
-              <property name="text">
-               <string>aasas 
- a</string>
-              </property>
-             </item>
-            </widget>
+            <widget class="QListWidget" name="listWidget"/>
            </item>
           </layout>
          </item>
@@ -176,7 +169,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="platformName"/>
+                 <widget class="QLineEdit" name="platformNameInput"/>
                 </item>
                 <item>
                  <spacer name="verticalSpacer_2">
@@ -199,7 +192,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="platformEmail"/>
+                 <widget class="QLineEdit" name="platformEmailInput"/>
                 </item>
                 <item>
                  <spacer name="verticalSpacer_4">
@@ -230,7 +223,7 @@
                    <number>83</number>
                   </property>
                   <item>
-                   <widget class="QLineEdit" name="platformPassword"/>
+                   <widget class="QLineEdit" name="platformPasswordInput"/>
                   </item>
                   <item>
                    <widget class="QPushButton" name="autoGenerateButton">
@@ -255,7 +248,7 @@
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="addAccountButton_2">
+                 <widget class="QPushButton" name="addNewAccountBtn">
                   <property name="text">
                    <string>Add Account</string>
                   </property>

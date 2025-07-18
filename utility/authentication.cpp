@@ -1,5 +1,4 @@
 #include "authentication.h"
-#include "passwordmanagerio.h"
 #include <QString>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -8,11 +7,28 @@
 #include <QByteArray>
 #include <QCryptographicHash>
 #include <QString>
+#include <QRandomGenerator>
 
 Authentication::Authentication(const QString &filePath)
     : PasswordManagerIO(filePath)
 {
 
+}
+
+// generates a random salt for each user
+QString Authentication::generate_random_salt() {
+    const QString possibleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    // get a random salt length between 16-32
+    const int length =  QRandomGenerator::global()->bounded(16, 33);
+
+    QString randomSalt;
+    for(int count = 0; count < length; count++) {
+        int index = QRandomGenerator::global()->bounded(possibleChars.length());
+        randomSalt.append(possibleChars.at(index));
+    }
+
+    return randomSalt;
 }
 
 // adds hashed_email & hashed_password together and creates a new hash as vault key
@@ -71,8 +87,9 @@ bool Authentication::user_exist(const QString& email, const QJsonArray& users) {
 }
 
 bool Authentication::create_new_user(const QString& email, const QString& password) {
+    const QString randomSalt = generate_random_salt();
     const QString hashed_email = secure_hash(email);
-    const QString hashed_password = secure_hash(password);
+    const QString hashed_password = secure_hash(password + randomSalt);
 
     // gather existing data from target file
     QJsonArray users = read_json();
@@ -84,6 +101,7 @@ bool Authentication::create_new_user(const QString& email, const QString& passwo
     QJsonObject newUser;
     newUser["email"] = hashed_email;
     newUser["password"] = hashed_password;
+    newUser["salt"] = randomSalt;
 
     // add the new user data to existing data
     users.append(newUser);
@@ -102,8 +120,12 @@ QString Authentication::authenticate_user(const QString& email, const QString& p
     // verify user data is not null, exit the function is data is null
     if(user.isEmpty()) return "";
 
+    // get salt
+    const QString salt = user["salt"].toString();
+    qDebug() << salt;
+
     // if user exist, hash the password
-    const QString hashed_password = secure_hash(password);
+    const QString hashed_password = secure_hash(password + salt);
 
     // compare the hash password signature with another hash password that stored in file
     if(user.contains("password") && user["password"] == hashed_password) {
