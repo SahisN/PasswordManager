@@ -16,6 +16,7 @@ UserDataHandler::UserDataHandler(const QString &filePath, const QString &vaultKe
 {
     encryptedData = fetch_account_data();
     accountData = load_account_list(encryptedData);
+    filteredData = {};
 }
 
 // encrypt few strings
@@ -76,8 +77,14 @@ bool UserDataHandler::sync_account_data(const QString &platformName, const QStri
 
     // update the QList if successful
     if(isSaved) {
-        const PlatformAccount newPlatformAccount = {platformName, platformEmail, platformPassword};
+        const PlatformAccount newPlatformAccount = {platformName, platformEmail, platformPassword, platformCategory};
         accountData.append(newPlatformAccount);
+
+        // if user adds an account while they are in the matching category filter
+        // then also add it to filterData list
+        if(activeCategory == platformCategory) {
+            filteredData.append(newPlatformAccount);
+        }
     }
 
     // if writing data is not successful then remove the new data from memory
@@ -96,6 +103,18 @@ QJsonArray UserDataHandler:: fetch_account_data() {
     if(accountData.isEmpty()) return {};
 
     return accountData;
+}
+
+void UserDataHandler::filter_by_category(const QString &targetCategory) {
+    // clear filtered data
+    filteredData.clear();
+
+    // populate filteredData with data that has matching category
+    for(int index = 0; index < accountData.size(); index++) {
+        if(accountData[index].category == targetCategory) {
+            filteredData.append(accountData[index]);
+        }
+    }
 }
 
 

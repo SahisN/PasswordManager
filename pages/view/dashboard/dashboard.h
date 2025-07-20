@@ -22,8 +22,10 @@ private slots:
     void switch_to_settings_page();
     void switch_to_account_creation();
     void switch_to_account_detail();
-    void load_list_view();
+    void load_list_view(const QList<PlatformAccount> accountData);
     void add_new_account();
+    void filter_by_category(const QString &category);
+    void reset_filter();
 
 private:
     Ui::Dashboard *ui;

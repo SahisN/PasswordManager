@@ -46,6 +46,55 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="Line" name="line_2">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="allCategoryBtn">
+          <property name="text">
+           <string>All Items</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="developmentCategoryBtn">
+          <property name="text">
+           <string>Development</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="gamingCategoryBtn">
+          <property name="text">
+           <string>Gaming</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="socialCategoryBtn">
+          <property name="text">
+           <string>Social</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="FianceCategoryBtn">
+          <property name="text">
+           <string>Fiance</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="otherCategoryBtn">
+          <property name="text">
+           <string>Others</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </item>
@@ -96,7 +145,7 @@
                </size>
               </property>
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="emptyAccountPage">
                <layout class="QVBoxLayout" name="verticalLayout">

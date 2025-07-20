@@ -54,7 +54,7 @@ Dashboard::Dashboard(QWidget *parent, const QString &vaultKey, const QString &fi
         qDebug() << vaultKey << "\n";
         qDebug() << userDataHandler->accountData.size();
         qDebug() << userDataHandler->encryptedData.size();
-        load_list_view();
+        load_list_view(userDataHandler->accountData);
 
         // navigation
         connect(ui->passwordGeneratorButton, &QPushButton::clicked, this, &Dashboard::switch_to_password_generator_page);
@@ -67,6 +67,25 @@ Dashboard::Dashboard(QWidget *parent, const QString &vaultKey, const QString &fi
 
         // new accout submission
         connect(ui->addNewAccountBtn, &QPushButton::clicked, this, &Dashboard::add_new_account);
+
+        // category buttons
+        connect(ui->developmentCategoryBtn, &QPushButton::clicked, this, [=]() {
+            filter_by_category("Development");
+        });
+        connect(ui->gamingCategoryBtn, &QPushButton::clicked, this, [=]() {
+            filter_by_category("Gaming");
+        });
+        connect(ui->socialCategoryBtn, &QPushButton::clicked, this, [=]() {
+            filter_by_category("Social");
+        });
+        connect(ui->FianceCategoryBtn, &QPushButton::clicked, this, [=]() {
+            filter_by_category("Fiance");
+        });
+        connect(ui->otherCategoryBtn, &QPushButton::clicked, this, [=]() {
+            filter_by_category("Other");
+        });
+
+        connect(ui->allCategoryBtn, &QPushButton::clicked, this, &Dashboard::reset_filter);
 }
 
 Dashboard::~Dashboard()
@@ -96,18 +115,28 @@ void Dashboard::switch_to_account_detail() {
     // get the current item index from listWidget
     const int index = ui->listWidget->currentRow();
 
+    // switches between filtered category data or all account data
+    // depending on category selection
+    PlatformAccount currentAccount;
+    if(userDataHandler->activeCategory == "All") {
+        currentAccount = userDataHandler->accountData[index];
+    }
+
+    else {
+        currentAccount = userDataHandler->filteredData[index];
+    }
+
     // display the account data that matches the item index
-    const PlatformAccount currentAccount = userDataHandler->accountData[index];
     ui->platformNameText->setText(currentAccount.platformName);
     ui->platformEmailText->setText(currentAccount.email);
     ui->platformPasswordText->setText(currentAccount.password);
     ui->platformCategoryText->setText(currentAccount.category);
 
-    qDebug() << currentAccount.category;
+    qDebug() << userDataHandler->activeCategory;
 }
 
-void Dashboard::load_list_view() {
-    QList<PlatformAccount> &accountData =  userDataHandler->accountData;
+void Dashboard::load_list_view(const QList<PlatformAccount> accountData) {
+    ui->listWidget->clear();
     for(int index = 0; index < accountData.size(); index++) {
         ui->listWidget->addItem(accountData[index].platformName);
     }
@@ -120,7 +149,7 @@ void Dashboard::add_new_account() {
     const QString platformCategory = ui->categorySelection->currentText();
 
     const bool isSuccessful = userDataHandler->sync_account_data(platformName, platformEmail, platformPassword, platformCategory);
-    if(isSuccessful) {
+    if(isSuccessful && (userDataHandler->activeCategory == "All" || userDataHandler->activeCategory == platformCategory)) {
         const QString data = userDataHandler->accountData.last().platformName;
         ui->listWidget->addItem(data);
     }
@@ -129,6 +158,29 @@ void Dashboard::add_new_account() {
     ui->platformEmailInput->clear();
     ui->platformNameInput->clear();
     ui->platformPasswordInput->clear();
+}
+
+void Dashboard::filter_by_category(const QString &category) {
+    ui->accountPanel->setCurrentIndex(0);
+
+    // update active category to the category user selected
+    userDataHandler->activeCategory = category;
+
+    // filter accounts by category
+    userDataHandler->filter_by_category(category);
+
+    // reload the list with the updated filter
+    load_list_view(userDataHandler->filteredData);
+}
+
+void Dashboard::reset_filter() {
+    // reset activeCategory to All
+    userDataHandler->activeCategory = "All";
+    ui->accountPanel->setCurrentIndex(0);
+
+    // reload the list to show all accounts
+    load_list_view(userDataHandler->accountData);
+
 }
 
 

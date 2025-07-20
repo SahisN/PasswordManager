@@ -7,12 +7,18 @@
 class  UserDataHandler : public PasswordManagerIO
 {
 public:
+    // list & vars
     QJsonArray encryptedData;
     QList<PlatformAccount> accountData;
+    QList<PlatformAccount> filteredData;
+    QString activeCategory = "All";
+
+    // functions
     UserDataHandler(const QString &filePath, const QString &vaultKey, const QString &salt);
     QJsonArray fetch_account_data();
     bool sync_account_data(const QString &platformName, const QString &platformEmail, const QString &platformPassword,
                            const QString &platformCategory);
+    void filter_by_category(const QString &category);
 
 private:
     // functions
