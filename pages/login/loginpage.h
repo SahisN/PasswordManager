@@ -17,7 +17,7 @@ public:
 
 signals:
     void switch_to_create_account();
-    void switch_to_dashboard(const QString &email);
+    void switch_to_dashboard(const QString &vaultKey, const QString &fileName, const QString &salt);
 
 private slots:
     void handle_login();

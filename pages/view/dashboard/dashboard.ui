@@ -96,7 +96,7 @@
                </size>
               </property>
               <property name="currentIndex">
-               <number>2</number>
+               <number>1</number>
               </property>
               <widget class="QWidget" name="emptyAccountPage">
                <layout class="QVBoxLayout" name="verticalLayout">
@@ -118,11 +118,76 @@
               <widget class="QWidget" name="accountDetailPage">
                <layout class="QVBoxLayout" name="verticalLayout_6">
                 <item>
-                 <widget class="QLabel" name="label_7">
+                 <widget class="QLabel" name="platformNameText">
                   <property name="text">
-                   <string>Account Detail Page</string>
+                   <string>PlatformTitle</string>
                   </property>
                  </widget>
+                </item>
+                <item>
+                 <widget class="Line" name="line">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item alignment="Qt::AlignmentFlag::AlignBottom">
+                 <widget class="QLabel" name="emailLabel">
+                  <property name="text">
+                   <string>Email</string>
+                  </property>
+                 </widget>
+                </item>
+                <item alignment="Qt::AlignmentFlag::AlignTop">
+                 <widget class="QLabel" name="platformEmailText">
+                  <property name="text">
+                   <string>TextLabel</string>
+                  </property>
+                 </widget>
+                </item>
+                <item alignment="Qt::AlignmentFlag::AlignBottom">
+                 <widget class="QLabel" name="passwordLabel">
+                  <property name="text">
+                   <string>Password</string>
+                  </property>
+                 </widget>
+                </item>
+                <item alignment="Qt::AlignmentFlag::AlignTop">
+                 <widget class="QLabel" name="platformPasswordText">
+                  <property name="text">
+                   <string>TextLabel</string>
+                  </property>
+                 </widget>
+                </item>
+                <item alignment="Qt::AlignmentFlag::AlignBottom">
+                 <widget class="QLabel" name="categoryLabel">
+                  <property name="text">
+                   <string>Category</string>
+                  </property>
+                 </widget>
+                </item>
+                <item alignment="Qt::AlignmentFlag::AlignTop">
+                 <widget class="QLabel" name="platformCategoryText">
+                  <property name="text">
+                   <string>TextLabel</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_7">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Policy::Preferred</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
                 </item>
                </layout>
               </widget>
@@ -185,7 +250,7 @@
                  </spacer>
                 </item>
                 <item alignment="Qt::AlignmentFlag::AlignBottom">
-                 <widget class="QLabel" name="label_4">
+                 <widget class="QLabel" name="PlatformEmailLabel">
                   <property name="text">
                    <string>Platform Email</string>
                   </property>
@@ -208,7 +273,7 @@
                  </spacer>
                 </item>
                 <item alignment="Qt::AlignmentFlag::AlignBottom">
-                 <widget class="QLabel" name="label_5">
+                 <widget class="QLabel" name="PlatformPasswordLabel">
                   <property name="text">
                    <string>Platform Password</string>
                   </property>
@@ -233,6 +298,35 @@
                    </widget>
                   </item>
                  </layout>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="categorySelection">
+                  <item>
+                   <property name="text">
+                    <string>Development</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Gaming</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Social</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Fiance</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Other</string>
+                   </property>
+                  </item>
+                 </widget>
                 </item>
                 <item>
                  <spacer name="verticalSpacer_5">

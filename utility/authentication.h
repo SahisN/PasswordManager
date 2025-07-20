@@ -1,6 +1,7 @@
 #ifndef AUTHENTICATION_H
 #define AUTHENTICATION_H
 #include "passwordmanagerio.h"
+#include "userauthdata.h"
 #include <QString>
 #include <QJsonObject>
 
@@ -10,9 +11,8 @@ class Authentication : public PasswordManagerIO
 public:
     Authentication(const QString& filePath);
     bool user_exist(const QString& email, const QJsonArray& users);
-    QString authenticate_user(const QString& email, const QString& password);
+    UserAuthData authenticate_user(const QString& email, const QString& password);
     bool create_new_user(const QString& email, const QString& password);
-    QString generate_file_path(const QString& email);
 
 private:
     QJsonObject find_user(const QString& email);

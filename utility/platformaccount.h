@@ -6,5 +6,6 @@ struct PlatformAccount {
     QString platformName;
     QString email;
     QString password;
+    QString category;
 };
 #endif // PLATFORMACCOUNT_H

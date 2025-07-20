@@ -11,7 +11,7 @@ PasswordManager::PasswordManager(QWidget *parent)
 {
     ui->setupUi(this);
 
-    Authentication *authPtr = new Authentication("PasswordManagerData/user.json");
+    Authentication* authPtr = new Authentication("PasswordManagerData/user.json");
 
     // application pages
     LoginPage* loginPage = new LoginPage(this, authPtr);
@@ -45,7 +45,7 @@ void PasswordManager::go_to_create_account_page()
 }
 
 // only called when login is successful
-void PasswordManager::go_to_dashboard(const QString &email)
+void PasswordManager::go_to_dashboard(const QString &vaultKey, const QString &fileName, const QString &salt)
 {
     // only called if dashboardPagePtr is not null
     if(dashboardPagePtr) {
@@ -66,7 +66,7 @@ void PasswordManager::go_to_dashboard(const QString &email)
 
     // create dashboardPagePtr when login is successful
     // add it in stackWidget and switch to that page
-    dashboardPagePtr = new Dashboard(this, email);
+    dashboardPagePtr = new Dashboard(this, vaultKey, fileName, salt);
     ui->stackedWidget->addWidget(dashboardPagePtr);
     ui->stackedWidget->setCurrentIndex(2);
 }

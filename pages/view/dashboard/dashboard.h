@@ -13,7 +13,7 @@ class Dashboard : public QWidget
     Q_OBJECT
 
 public:
-    explicit Dashboard(QWidget *parent, const QString &vaultKey);
+    explicit Dashboard(QWidget *parent, const QString &vaultKey, const QString &fileName, const QString &salt);
     ~Dashboard();
 
 private slots:
@@ -27,7 +27,6 @@ private slots:
 
 private:
     Ui::Dashboard *ui;
-    const QString &vaultKey;
     UserDataHandler* userDataHandler = nullptr;
 };
 

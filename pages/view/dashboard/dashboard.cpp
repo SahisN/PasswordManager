@@ -8,10 +8,9 @@
 #include <QJsonObject>
 #include <QDebug>
 
-Dashboard::Dashboard(QWidget *parent, const QString &vaultKey)
+Dashboard::Dashboard(QWidget *parent, const QString &vaultKey, const QString &fileName, const QString &salt)
     : QWidget(parent)
     , ui(new Ui::Dashboard)
-    , vaultKey(vaultKey)
 {
     ui->setupUi(this);
 
@@ -43,7 +42,7 @@ Dashboard::Dashboard(QWidget *parent, const QString &vaultKey)
 
         PasswordGeneratorPage* passwordGeneratorPage = new PasswordGeneratorPage(this);
         SettingsPage* settingPage = new SettingsPage(this);
-        userDataHandler = new UserDataHandler("PasswordManagerData/users/pass.json", vaultKey);
+        userDataHandler = new UserDataHandler("PasswordManagerData/users/" + fileName + ".json", vaultKey, salt);
 
         ui->dashboardPages->insertWidget(1, passwordGeneratorPage);
         ui->dashboardPages->insertWidget(2, settingPage);
@@ -93,7 +92,18 @@ void Dashboard::switch_to_account_creation() {
 
 void Dashboard::switch_to_account_detail() {
     ui->accountPanel->setCurrentIndex(1);
-    qDebug() << ui->listWidget->currentRow();
+
+    // get the current item index from listWidget
+    const int index = ui->listWidget->currentRow();
+
+    // display the account data that matches the item index
+    const PlatformAccount currentAccount = userDataHandler->accountData[index];
+    ui->platformNameText->setText(currentAccount.platformName);
+    ui->platformEmailText->setText(currentAccount.email);
+    ui->platformPasswordText->setText(currentAccount.password);
+    ui->platformCategoryText->setText(currentAccount.category);
+
+    qDebug() << currentAccount.category;
 }
 
 void Dashboard::load_list_view() {
@@ -107,9 +117,9 @@ void Dashboard::add_new_account() {
     const QString platformName = ui->platformNameInput->text();
     const QString platformEmail = ui->platformEmailInput->text();
     const QString platformPassword = ui->platformPasswordInput->text();
+    const QString platformCategory = ui->categorySelection->currentText();
 
-
-    const bool isSuccessful = userDataHandler->sync_account_data(platformName, platformEmail, platformPassword);
+    const bool isSuccessful = userDataHandler->sync_account_data(platformName, platformEmail, platformPassword, platformCategory);
     if(isSuccessful) {
         const QString data = userDataHandler->accountData.last().platformName;
         ui->listWidget->addItem(data);

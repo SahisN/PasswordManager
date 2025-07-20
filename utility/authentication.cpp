@@ -1,4 +1,5 @@
 #include "authentication.h"
+#include "userauthdata.h"
 #include <QString>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -110,7 +111,7 @@ bool Authentication::create_new_user(const QString& email, const QString& passwo
     return write_json(users);
 }
 
-QString Authentication::authenticate_user(const QString& email, const QString& password) {
+UserAuthData Authentication::authenticate_user(const QString& email, const QString& password) {
     // hash the email
     const QString hashed_email = secure_hash(email);
 
@@ -118,7 +119,7 @@ QString Authentication::authenticate_user(const QString& email, const QString& p
     const QJsonObject user = find_user(hashed_email);
 
     // verify user data is not null, exit the function is data is null
-    if(user.isEmpty()) return "";
+    if(user.isEmpty()) return {};
 
     // get salt
     const QString salt = user["salt"].toString();
@@ -129,9 +130,10 @@ QString Authentication::authenticate_user(const QString& email, const QString& p
 
     // compare the hash password signature with another hash password that stored in file
     if(user.contains("password") && user["password"] == hashed_password) {
-        return generate_vault_key(hashed_email, hashed_password);
+        return{password, hashed_email, salt};
+        //generate_vault_key(hashed_email, hashed_password);
     }
 
-    return "";
+    return {};
 }
 

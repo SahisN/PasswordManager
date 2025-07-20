@@ -25,6 +25,9 @@ qt_add_executable(PasswordManager
     utility/userdatahandler.h utility/userdatahandler.cpp
     utility/platformaccount.h
 
+    extern/qaesencryption.h extern/qaesencryption.cpp
+    utility/userauthdata.h
+
 )
 
 target_include_directories(PasswordManager PRIVATE

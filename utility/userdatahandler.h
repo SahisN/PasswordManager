@@ -2,23 +2,36 @@
 #define USERDATAHANDLER_H
 #include "passwordmanagerio.h"
 #include "platformaccount.h"
+#include "extern/qaesencryption.h"
 
-class UserDataHandler : public PasswordManagerIO
+class  UserDataHandler : public PasswordManagerIO
 {
 public:
     QJsonArray encryptedData;
     QList<PlatformAccount> accountData;
-    UserDataHandler(const QString &filePath, const QString &vaultKey);
+    UserDataHandler(const QString &filePath, const QString &vaultKey, const QString &salt);
     QJsonArray fetch_account_data();
-    bool sync_account_data(const QString &platformName, const QString &platformEmail, const QString &platformPassword);
+    bool sync_account_data(const QString &platformName, const QString &platformEmail, const QString &platformPassword,
+                           const QString &platformCategory);
 
 private:
+    // functions
     void update_account_list(QList<PlatformAccount> &accountData);
-    QList<PlatformAccount> load_account_list(QJsonArray &encryptedData);
+    QList<PlatformAccount> load_account_list(const QJsonArray &encryptedData);
+    QString encryptPlainText(const QString &plainText);
+    QString decryptText(const QString &encryptedText);
+
+    // const vars
     const QString vaultKey;
+    const QString salt;
     const QString platformNameKey;
     const QString emailNameKey;
     const QString passwordNameKey;
+    const QString categoryNameKey;
+
+    // class var
+    QAESEncryption aesEncryption;
+
 };
 
 #endif // USERDATAHANDLER_H

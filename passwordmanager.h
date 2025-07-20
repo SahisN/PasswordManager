@@ -21,7 +21,7 @@ public:
 private slots:
     void go_to_create_account_page();
     void go_to_login_page();
-    void go_to_dashboard(const QString &email);
+    void go_to_dashboard(const QString &vaultKey, const QString &fileName, const QString &salt);
 
 private:
     Ui::PasswordManager *ui;

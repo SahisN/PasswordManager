@@ -39,10 +39,11 @@ void LoginPage::handle_login() {
 
     // if password & email is valid then authenticate user
     else {
-        QString vaultKey = authPtr->authenticate_user(email, password);
+        const UserAuthData userAuthData = authPtr->authenticate_user(email, password);
+        const QString fileName = authPtr->secure_hash(email);
 
-        if(!vaultKey.isEmpty()) {
-            emit LoginPage::switch_to_dashboard(vaultKey);
+        if(!userAuthData.filePath.isEmpty() && !userAuthData.masterKey.isEmpty() && !userAuthData.salt.isEmpty()) {
+            emit LoginPage::switch_to_dashboard(userAuthData.masterKey, userAuthData.filePath, userAuthData.salt);
         }
 
         // if login isn't successful then notify user
