@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>images/vault_logo.svg</file>
+        <file>images/key_logo.svg</file>
+        <file>images/shield_logo.svg</file>
+        <file>images/settings_logo.svg</file>
+        <file>images/code_logo.svg</file>
+        <file>images/email_logo.svg</file>
+        <file>images/folder_logo.svg</file>
+        <file>images/gaming_logo.svg</file>
+        <file>images/others_logo.svg</file>
+        <file>images/web_logo.svg</file>
+        <file>images/copy_logo.svg</file>
+    </qresource>
+</RCC>

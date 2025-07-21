@@ -6,18 +6,32 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>947</width>
-    <height>619</height>
+    <width>965</width>
+    <height>631</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #212b36;
+border-radius:5px;</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <widget class="QFrame" name="frame">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #1a222d;
+border: 2px;
+border-radius:10px;</string>
+       </property>
        <property name="frameShape">
         <enum>QFrame::Shape::StyledPanel</enum>
        </property>
@@ -25,73 +39,374 @@
         <enum>QFrame::Shadow::Raised</enum>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_7">
-        <item>
+        <item alignment="Qt::AlignmentFlag::AlignLeft">
          <widget class="QPushButton" name="VaultButton">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"> QPushButton {
+            background-color: transparent;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        QPushButton:hover:!checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:hover:checked {
+            background-color: #aaaaaa;
+        }</string>
+          </property>
           <property name="text">
-           <string>Vault</string>
+           <string>Vault                      </string>
+          </property>
+          <property name="icon">
+           <iconset resource="../../../resources.qrc">
+            <normaloff>:/img/images/shield_logo.svg</normaloff>:/img/images/shield_logo.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="checked">
+           <bool>false</bool>
           </property>
          </widget>
         </item>
-        <item>
+        <item alignment="Qt::AlignmentFlag::AlignLeft">
          <widget class="QPushButton" name="passwordGeneratorButton">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"> QPushButton {
+            background-color: transparent;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        QPushButton:hover:!checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:hover:checked {
+            background-color: #aaaaaa;
+        }</string>
+          </property>
           <property name="text">
            <string>Password Generator</string>
           </property>
+          <property name="icon">
+           <iconset resource="../../../resources.qrc">
+            <normaloff>:/img/images/key_logo.svg</normaloff>:/img/images/key_logo.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
-        <item>
+        <item alignment="Qt::AlignmentFlag::AlignLeft">
          <widget class="QPushButton" name="SettingsButton">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"> QPushButton {
+            background-color: transparent;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        QPushButton:hover:!checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:hover:checked {
+            background-color: #aaaaaa;
+        }</string>
+          </property>
           <property name="text">
-           <string>Settings</string>
+           <string>Settings                  </string>
+          </property>
+          <property name="icon">
+           <iconset resource="../../../resources.qrc">
+            <normaloff>:/img/images/settings_logo.svg</normaloff>:/img/images/settings_logo.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
         <item>
          <widget class="Line" name="line_2">
+          <property name="styleSheet">
+           <string notr="true">background-color: grey;
+</string>
+          </property>
           <property name="orientation">
            <enum>Qt::Orientation::Horizontal</enum>
           </property>
          </widget>
         </item>
-        <item>
+        <item alignment="Qt::AlignmentFlag::AlignLeft">
          <widget class="QPushButton" name="allCategoryBtn">
+          <property name="styleSheet">
+           <string notr="true"> QPushButton {
+            background-color: transparent;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        QPushButton:hover:!checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:hover:checked {
+            background-color: #aaaaaa;
+        }</string>
+          </property>
           <property name="text">
-           <string>All Items</string>
+           <string>All Items                        </string>
+          </property>
+          <property name="icon">
+           <iconset resource="../../../resources.qrc">
+            <normaloff>:/img/images/folder_logo.svg</normaloff>:/img/images/folder_logo.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
          </widget>
         </item>
-        <item>
+        <item alignment="Qt::AlignmentFlag::AlignLeft">
          <widget class="QPushButton" name="developmentCategoryBtn">
+          <property name="styleSheet">
+           <string notr="true"> QPushButton {
+            background-color: transparent;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        QPushButton:hover:!checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:hover:checked {
+            background-color: #aaaaaa;
+        }</string>
+          </property>
           <property name="text">
-           <string>Development</string>
+           <string>Development                </string>
+          </property>
+          <property name="icon">
+           <iconset resource="../../../resources.qrc">
+            <normaloff>:/img/images/code_logo.svg</normaloff>:/img/images/code_logo.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
          </widget>
         </item>
-        <item>
+        <item alignment="Qt::AlignmentFlag::AlignLeft">
          <widget class="QPushButton" name="gamingCategoryBtn">
+          <property name="styleSheet">
+           <string notr="true"> QPushButton {
+            background-color: transparent;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        QPushButton:hover:!checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:hover:checked {
+            background-color: #aaaaaa;
+        }</string>
+          </property>
           <property name="text">
-           <string>Gaming</string>
+           <string>Gaming                         </string>
+          </property>
+          <property name="icon">
+           <iconset resource="../../../resources.qrc">
+            <normaloff>:/img/images/gaming_logo.svg</normaloff>:/img/images/gaming_logo.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
          </widget>
         </item>
-        <item>
+        <item alignment="Qt::AlignmentFlag::AlignLeft">
          <widget class="QPushButton" name="socialCategoryBtn">
+          <property name="styleSheet">
+           <string notr="true"> QPushButton {
+            background-color: transparent;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        QPushButton:hover:!checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:hover:checked {
+            background-color: #aaaaaa;
+        }</string>
+          </property>
           <property name="text">
-           <string>Social</string>
+           <string>Social                             </string>
+          </property>
+          <property name="icon">
+           <iconset resource="../../../resources.qrc">
+            <normaloff>:/img/images/web_logo.svg</normaloff>:/img/images/web_logo.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QPushButton" name="FianceCategoryBtn">
+        <item alignment="Qt::AlignmentFlag::AlignLeft">
+         <widget class="QPushButton" name="EmailCategoryBtn">
+          <property name="styleSheet">
+           <string notr="true"> QPushButton {
+            background-color: transparent;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        QPushButton:hover:!checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:hover:checked {
+            background-color: #aaaaaa;
+        }</string>
+          </property>
           <property name="text">
-           <string>Fiance</string>
+           <string>Email                              </string>
+          </property>
+          <property name="icon">
+           <iconset resource="../../../resources.qrc">
+            <normaloff>:/img/images/email_logo.svg</normaloff>:/img/images/email_logo.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
          </widget>
         </item>
-        <item>
+        <item alignment="Qt::AlignmentFlag::AlignLeft">
          <widget class="QPushButton" name="otherCategoryBtn">
+          <property name="styleSheet">
+           <string notr="true"> QPushButton {
+            background-color: transparent;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        QPushButton:hover:!checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:checked {
+            background-color: #0078d7;
+        }
+
+        QPushButton:hover:checked {
+            background-color: #aaaaaa;
+        }</string>
+          </property>
           <property name="text">
-           <string>Others</string>
+           <string>Others                            </string>
+          </property>
+          <property name="icon">
+           <iconset resource="../../../resources.qrc">
+            <normaloff>:/img/images/others_logo.svg</normaloff>:/img/images/others_logo.svg</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -109,17 +424,43 @@
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item alignment="Qt::AlignmentFlag::AlignRight">
+         <item alignment="Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignBottom">
           <widget class="QPushButton" name="addAccountButton">
+           <property name="styleSheet">
+            <string notr="true"> QPushButton {
+            background-color: #0078d7;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 5px;
+        }
+
+        QPushButton:hover {
+            background-color: #aaaaaa;
+        }</string>
+           </property>
            <property name="text">
             <string>Add Account</string>
+           </property>
+           <property name="icon">
+            <iconset theme="QIcon::ThemeIcon::ListAdd"/>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>18</width>
+             <height>18</height>
+            </size>
            </property>
           </widget>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
-            <widget class="QListWidget" name="listWidget"/>
+            <widget class="QListWidget" name="listWidget">
+             <property name="styleSheet">
+              <string notr="true">border: 2px;
+border-radius:10px;</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -129,6 +470,11 @@
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
           <widget class="QFrame" name="frame_3">
+           <property name="styleSheet">
+            <string notr="true">background-color: #1f2834;
+border: 2px;
+border-radius:10px;</string>
+           </property>
            <property name="frameShape">
             <enum>QFrame::Shape::StyledPanel</enum>
            </property>
@@ -144,8 +490,14 @@
                 <height>16777215</height>
                </size>
               </property>
+              <property name="font">
+               <font>
+                <pointsize>11</pointsize>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="currentIndex">
-               <number>0</number>
+               <number>2</number>
               </property>
               <widget class="QWidget" name="emptyAccountPage">
                <layout class="QVBoxLayout" name="verticalLayout">
@@ -156,6 +508,12 @@
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
                   </property>
                   <property name="text">
                    <string>Select / Create a account  to view details</string>
@@ -168,6 +526,12 @@
                <layout class="QVBoxLayout" name="verticalLayout_6">
                 <item>
                  <widget class="QLabel" name="platformNameText">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>PlatformTitle</string>
                   </property>
@@ -182,6 +546,12 @@
                 </item>
                 <item alignment="Qt::AlignmentFlag::AlignBottom">
                  <widget class="QLabel" name="emailLabel">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Email</string>
                   </property>
@@ -189,6 +559,11 @@
                 </item>
                 <item alignment="Qt::AlignmentFlag::AlignTop">
                  <widget class="QLabel" name="platformEmailText">
+                  <property name="font">
+                   <font>
+                    <pointsize>11</pointsize>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>TextLabel</string>
                   </property>
@@ -196,20 +571,58 @@
                 </item>
                 <item alignment="Qt::AlignmentFlag::AlignBottom">
                  <widget class="QLabel" name="passwordLabel">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Password</string>
                   </property>
                  </widget>
                 </item>
-                <item alignment="Qt::AlignmentFlag::AlignTop">
-                 <widget class="QLabel" name="platformPasswordText">
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout">
+                  <item>
+                   <widget class="QLabel" name="platformPasswordText">
+                    <property name="font">
+                     <font>
+                      <pointsize>11</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>TextLabel</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item alignment="Qt::AlignmentFlag::AlignRight">
+                   <widget class="QPushButton" name="pushButton">
+                    <property name="text">
+                     <string>Copy</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../../../resources.qrc">
+                      <normaloff>:/img/images/copy_logo.svg</normaloff>:/img/images/copy_logo.svg</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>20</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item alignment="Qt::AlignmentFlag::AlignBottom">
                  <widget class="QLabel" name="categoryLabel">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Category</string>
                   </property>
@@ -217,6 +630,11 @@
                 </item>
                 <item alignment="Qt::AlignmentFlag::AlignTop">
                  <widget class="QLabel" name="platformCategoryText">
+                  <property name="font">
+                   <font>
+                    <pointsize>11</pointsize>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>TextLabel</string>
                   </property>
@@ -257,8 +675,14 @@
                 </item>
                 <item alignment="Qt::AlignmentFlag::AlignHCenter">
                  <widget class="QLabel" name="label_6">
+                  <property name="font">
+                   <font>
+                    <pointsize>14</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
                   <property name="text">
-                   <string>Add Your Account</string>
+                   <string>Create A Platform Account</string>
                   </property>
                  </widget>
                 </item>
@@ -277,13 +701,28 @@
                 </item>
                 <item alignment="Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignBottom">
                  <widget class="QLabel" name="accountTitleLabel">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Platform Name</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="platformNameInput"/>
+                 <widget class="QLineEdit" name="platformNameInput">
+                  <property name="styleSheet">
+                   <string notr="true">border: 2px solid white;
+border-radius: 0px;
+padding: 3px;</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <spacer name="verticalSpacer_2">
@@ -300,13 +739,28 @@
                 </item>
                 <item alignment="Qt::AlignmentFlag::AlignBottom">
                  <widget class="QLabel" name="PlatformEmailLabel">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Platform Email</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="platformEmailInput"/>
+                 <widget class="QLineEdit" name="platformEmailInput">
+                  <property name="styleSheet">
+                   <string notr="true">border: 2px solid white;
+border-radius: 0px;
+padding: 3px;</string>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
                 </item>
                 <item>
                  <spacer name="verticalSpacer_4">
@@ -323,6 +777,12 @@
                 </item>
                 <item alignment="Qt::AlignmentFlag::AlignBottom">
                  <widget class="QLabel" name="PlatformPasswordLabel">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
                   <property name="text">
                    <string>Platform Password</string>
                   </property>
@@ -337,12 +797,28 @@
                    <number>83</number>
                   </property>
                   <item>
-                   <widget class="QLineEdit" name="platformPasswordInput"/>
+                   <widget class="QLineEdit" name="platformPasswordInput">
+                    <property name="styleSheet">
+                     <string notr="true">border: 2px solid white;
+border-radius: 0px;
+padding: 3px;</string>
+                    </property>
+                   </widget>
                   </item>
                   <item>
                    <widget class="QPushButton" name="autoGenerateButton">
                     <property name="text">
-                     <string>Auto Generate</string>
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../../../resources.qrc">
+                      <normaloff>:/img/images/key_logo.svg</normaloff>:/img/images/key_logo.svg</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>20</width>
+                      <height>20</height>
+                     </size>
                     </property>
                    </widget>
                   </item>
@@ -350,6 +826,17 @@
                 </item>
                 <item>
                  <widget class="QComboBox" name="categorySelection">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>false</bold>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 2px solid white;
+border-radius: 0px;
+padding: 3px;</string>
+                  </property>
                   <item>
                    <property name="text">
                     <string>Development</string>
@@ -367,7 +854,7 @@
                   </item>
                   <item>
                    <property name="text">
-                    <string>Fiance</string>
+                    <string>Email</string>
                    </property>
                   </item>
                   <item>
@@ -392,6 +879,27 @@
                 </item>
                 <item>
                  <widget class="QPushButton" name="addNewAccountBtn">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"> QPushButton {
+        background-color: #0078d7; 
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+		margin: 5px;
+    }
+    QPushButton:hover {
+        background-color: #3399ff;  
+    }
+    QPushButton:pressed {
+        background-color: #005a9e;  
+    }</string>
+                  </property>
                   <property name="text">
                    <string>Add Account</string>
                   </property>
@@ -425,6 +933,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

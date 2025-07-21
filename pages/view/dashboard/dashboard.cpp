@@ -37,8 +37,8 @@ Dashboard::Dashboard(QWidget *parent, const QString &vaultKey, const QString &fi
             border: 1px solid #005a9e;
             background: transparent;
         }
-
         )");
+
 
         PasswordGeneratorPage* passwordGeneratorPage = new PasswordGeneratorPage(this);
         SettingsPage* settingPage = new SettingsPage(this);
@@ -78,8 +78,8 @@ Dashboard::Dashboard(QWidget *parent, const QString &vaultKey, const QString &fi
         connect(ui->socialCategoryBtn, &QPushButton::clicked, this, [=]() {
             filter_by_category("Social");
         });
-        connect(ui->FianceCategoryBtn, &QPushButton::clicked, this, [=]() {
-            filter_by_category("Fiance");
+        connect(ui->EmailCategoryBtn, &QPushButton::clicked, this, [=]() {
+            filter_by_category("Email");
         });
         connect(ui->otherCategoryBtn, &QPushButton::clicked, this, [=]() {
             filter_by_category("Other");
@@ -95,14 +95,20 @@ Dashboard::~Dashboard()
 
 void Dashboard::switch_to_valut_page() {
     ui->dashboardPages->setCurrentIndex(0);
+    ui->passwordGeneratorButton->setChecked(false);
+    ui->SettingsButton->setChecked(false);
 }
 
 void Dashboard::switch_to_password_generator_page() {
     ui->dashboardPages->setCurrentIndex(1);
+    ui->VaultButton->setChecked(false);
+    ui->SettingsButton->setChecked(false);
 }
 
 void Dashboard::switch_to_settings_page() {
     ui->dashboardPages->setCurrentIndex(2);
+    ui->passwordGeneratorButton->setChecked(false);
+    ui->VaultButton->setChecked(false);
 }
 
 void Dashboard::switch_to_account_creation() {

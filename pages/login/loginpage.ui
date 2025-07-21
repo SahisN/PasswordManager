@@ -14,12 +14,53 @@
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item alignment="Qt::AlignmentFlag::AlignHCenter">
-    <widget class="QLabel" name="title">
-     <property name="text">
-      <string>Password Manager</string>
-     </property>
-    </widget>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item alignment="Qt::AlignmentFlag::AlignRight">
+      <widget class="QLabel" name="logo">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>80</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="../../resources.qrc">:/img/images/vault_logo.svg</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item alignment="Qt::AlignmentFlag::AlignLeft">
+      <widget class="QLabel" name="title">
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>SecurePass</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -34,6 +75,11 @@
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item alignment="Qt::AlignmentFlag::AlignHCenter">
          <widget class="QLabel" name="pageName">
+          <property name="font">
+           <font>
+            <pointsize>16</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>Login</string>
           </property>
@@ -41,18 +87,34 @@
         </item>
         <item>
          <widget class="QLabel" name="emailLabel">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>Email</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="emailInput"/>
+         <widget class="QLineEdit" name="emailInput">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="emailErrorText">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="text">
-           <string>TextLabel</string>
+           <string/>
           </property>
           <property name="margin">
            <number>3</number>
@@ -61,6 +123,11 @@
         </item>
         <item>
          <widget class="QLabel" name="passwordLabel">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>Password</string>
           </property>
@@ -68,6 +135,11 @@
         </item>
         <item>
          <widget class="QLineEdit" name="passwordInput">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -78,8 +150,13 @@
         </item>
         <item>
          <widget class="QLabel" name="PasswordErrorText">
+          <property name="font">
+           <font>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="text">
-           <string>TextLabel</string>
+           <string/>
           </property>
           <property name="margin">
            <number>3</number>
@@ -88,6 +165,26 @@
         </item>
         <item alignment="Qt::AlignmentFlag::AlignHCenter">
          <widget class="QPushButton" name="loginButton">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"> QPushButton {
+        background-color: #0078d7; 
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+		margin: 5px;
+    }
+    QPushButton:hover {
+        background-color: #3399ff;  
+    }
+    QPushButton:pressed {
+        background-color: #005a9e;  
+    }</string>
+          </property>
           <property name="text">
            <string>Login</string>
           </property>
@@ -97,6 +194,11 @@
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item alignment="Qt::AlignmentFlag::AlignRight">
            <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Don't have an account?</string>
             </property>
@@ -104,6 +206,22 @@
           </item>
           <item alignment="Qt::AlignmentFlag::AlignLeft">
            <widget class="QPushButton" name="createAccountButton">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"> QPushButton {
+       color: #0078d7; 
+        border: none;
+        padding: 8px 16px;
+    }</string>
+            </property>
             <property name="text">
              <string>Create An Account</string>
             </property>
@@ -125,6 +243,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
