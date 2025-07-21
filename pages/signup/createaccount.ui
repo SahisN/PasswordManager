@@ -351,6 +351,13 @@ padding: 6px 12px;</string>
      </item>
     </layout>
    </item>
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources>

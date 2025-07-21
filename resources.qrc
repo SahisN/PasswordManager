@@ -11,5 +11,6 @@
         <file>images/others_logo.svg</file>
         <file>images/web_logo.svg</file>
         <file>images/copy_logo.svg</file>
+        <file>images/restart_logo.svg</file>
     </qresource>
 </RCC>
