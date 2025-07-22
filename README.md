@@ -20,7 +20,7 @@
 ## 📸 Preview
 
 ![Dashboard](app_preview/dashboard_screenshot.png)
-![PasswordGenerator](app_preview/password_generator_screenshot)
+![PasswordGenerator](app_preview/password_generator_screenshot.png)
 
 ---
 
@@ -32,22 +32,3 @@
 - **Build System:** CMake
 
 ---
-
-## 🔧 Getting Started
-
-### Prerequisites
-
-- C++17 or higher
-- Qt 5.x or 6.x
-- OpenSSL development libraries (if using OpenSSL for AES)
-- CMake or Qt Creator
-
-### Build Instructions (CMake)
-
-```bash
-git clone https://github.com/yourusername/secure-pass.git
-cd secure-pass
-mkdir build && cd build
-cmake ..
-make
-./SecurePass
