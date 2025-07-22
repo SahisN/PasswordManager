@@ -160,16 +160,16 @@ border-radius:10px;</string>
         }</string>
           </property>
           <property name="text">
-           <string>Settings                  </string>
+           <string>Logout                   </string>
           </property>
           <property name="icon">
            <iconset resource="../../../resources.qrc">
-            <normaloff>:/img/images/settings_logo.svg</normaloff>:/img/images/settings_logo.svg</iconset>
+            <normaloff>:/img/images/logout_logo.svg</normaloff>:/img/images/logout_logo.svg</iconset>
           </property>
           <property name="iconSize">
            <size>
-            <width>24</width>
-            <height>24</height>
+            <width>25</width>
+            <height>25</height>
            </size>
           </property>
           <property name="checkable">
@@ -223,6 +223,9 @@ border-radius:10px;</string>
             <height>24</height>
            </size>
           </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item alignment="Qt::AlignmentFlag::AlignLeft">
@@ -259,6 +262,9 @@ border-radius:10px;</string>
             <width>24</width>
             <height>24</height>
            </size>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -297,6 +303,9 @@ border-radius:10px;</string>
             <height>24</height>
            </size>
           </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item alignment="Qt::AlignmentFlag::AlignLeft">
@@ -333,6 +342,9 @@ border-radius:10px;</string>
             <width>24</width>
             <height>24</height>
            </size>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -371,6 +383,9 @@ border-radius:10px;</string>
             <height>24</height>
            </size>
           </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item alignment="Qt::AlignmentFlag::AlignLeft">
@@ -407,6 +422,9 @@ border-radius:10px;</string>
             <width>24</width>
             <height>24</height>
            </size>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -715,9 +733,10 @@ border-radius:10px;</string>
                 <item>
                  <widget class="QLineEdit" name="platformNameInput">
                   <property name="styleSheet">
-                   <string notr="true">border: 2px solid white;
+                   <string notr="true">border: 2px solid #2f3e53;;
 border-radius: 0px;
-padding: 3px;</string>
+padding: 3px;
+</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -753,9 +772,10 @@ padding: 3px;</string>
                 <item>
                  <widget class="QLineEdit" name="platformEmailInput">
                   <property name="styleSheet">
-                   <string notr="true">border: 2px solid white;
+                   <string notr="true">border: 2px solid #2f3e53;;
 border-radius: 0px;
-padding: 3px;</string>
+padding: 3px;
+</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -799,9 +819,10 @@ padding: 3px;</string>
                   <item>
                    <widget class="QLineEdit" name="platformPasswordInput">
                     <property name="styleSheet">
-                     <string notr="true">border: 2px solid white;
+                     <string notr="true">border: 2px solid #2f3e53;;
 border-radius: 0px;
-padding: 3px;</string>
+padding: 3px;
+</string>
                     </property>
                    </widget>
                   </item>
@@ -833,9 +854,10 @@ padding: 3px;</string>
                    </font>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">border: 2px solid white;
+                   <string notr="true">border: 2px solid #2f3e53;;
 border-radius: 0px;
-padding: 3px;</string>
+padding: 3px;
+</string>
                   </property>
                   <item>
                    <property name="text">

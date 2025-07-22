@@ -43,7 +43,13 @@ void LoginPage::handle_login() {
         const QString fileName = authPtr->secure_hash(email);
 
         if(!userAuthData.filePath.isEmpty() && !userAuthData.masterKey.isEmpty() && !userAuthData.salt.isEmpty()) {
-            emit LoginPage::switch_to_dashboard(userAuthData.masterKey, userAuthData.filePath, userAuthData.salt);
+            emit LoginPage::switch_to_dashboard(userAuthData.masterKey,
+                                                userAuthData.filePath,
+                                                userAuthData.salt,
+                                                userAuthData.passwordLength,
+                                                userAuthData.includeUpperCase,
+                                                userAuthData.includeNumbers,
+                                                userAuthData.includeSymbols);
         }
 
         // if login isn't successful then notify user

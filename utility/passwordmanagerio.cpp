@@ -6,14 +6,15 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QCryptographicHash>
-#include <QCoreApplication>
+#include <QStandardPaths>
 #include <QDebug>
 
 
 PasswordManagerIO::PasswordManagerIO(const QString &filePath)
-    : filePath(filePath)
+    : filePath("PasswordManagerData/" + filePath)
 {
-    QString basePath = QCoreApplication::applicationDirPath() + filePath;
+    // QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
+    QString basePath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + this->filePath;
     qDebug() << basePath;
 }
 

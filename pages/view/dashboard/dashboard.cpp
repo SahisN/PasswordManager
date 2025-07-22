@@ -8,7 +8,14 @@
 #include <QJsonObject>
 #include <QDebug>
 
-Dashboard::Dashboard(QWidget *parent, const QString &vaultKey, const QString &fileName, const QString &salt)
+Dashboard::Dashboard(QWidget *parent,
+                     const QString &vaultKey,
+                     const QString &fileName,
+                     const QString &salt,
+                     const int passwordLength,
+                     const bool includeUpperCase,
+                     const bool includeNumbers,
+                     const bool includeSymbols)
     : QWidget(parent)
     , ui(new Ui::Dashboard)
 {
@@ -39,21 +46,21 @@ Dashboard::Dashboard(QWidget *parent, const QString &vaultKey, const QString &fi
         }
         )");
 
+        passwordGenerator = new PasswordGenerator(passwordLength, includeUpperCase, includeNumbers, includeSymbols);
+        userDataHandler = new UserDataHandler("users/" + fileName + ".json", vaultKey, salt);
 
-        PasswordGeneratorPage* passwordGeneratorPage = new PasswordGeneratorPage(this);
+        // sub pages for dashboard
+        PasswordGeneratorPage* passwordGeneratorPage = new PasswordGeneratorPage(this, passwordGenerator, vaultKey);
         SettingsPage* settingPage = new SettingsPage(this);
-        userDataHandler = new UserDataHandler("PasswordManagerData/users/" + fileName + ".json", vaultKey, salt);
 
         ui->dashboardPages->insertWidget(1, passwordGeneratorPage);
         ui->dashboardPages->insertWidget(2, settingPage);
 
-        // QIcon icon = QApplication::style()->standardIcon(QStyle::SP_DriveNetIcon);
-        // QListWidgetItem* item = new QListWidgetItem(icon, "Github\njohndoe@gmail.com");
-        // ui->listWidget->addItem(item);
-
+        // temp
         qDebug() << vaultKey << "\n";
         qDebug() << userDataHandler->accountData.size();
         qDebug() << userDataHandler->encryptedData.size();
+
         load_list_view(userDataHandler->accountData);
 
         // navigation
@@ -71,18 +78,29 @@ Dashboard::Dashboard(QWidget *parent, const QString &vaultKey, const QString &fi
         // category buttons
         connect(ui->developmentCategoryBtn, &QPushButton::clicked, this, [=]() {
             filter_by_category("Development");
+            uncheck_all_filter_buttons();
+            ui->developmentCategoryBtn->setChecked(true);
+
         });
         connect(ui->gamingCategoryBtn, &QPushButton::clicked, this, [=]() {
             filter_by_category("Gaming");
+            uncheck_all_filter_buttons();
+            ui->gamingCategoryBtn->setChecked(true);
         });
         connect(ui->socialCategoryBtn, &QPushButton::clicked, this, [=]() {
             filter_by_category("Social");
+            uncheck_all_filter_buttons();
+            ui->socialCategoryBtn->setChecked(true);
         });
         connect(ui->EmailCategoryBtn, &QPushButton::clicked, this, [=]() {
             filter_by_category("Email");
+            uncheck_all_filter_buttons();
+            ui->EmailCategoryBtn->setChecked(true);
         });
         connect(ui->otherCategoryBtn, &QPushButton::clicked, this, [=]() {
             filter_by_category("Other");
+            uncheck_all_filter_buttons();
+            ui->otherCategoryBtn->setChecked(true);
         });
 
         connect(ui->allCategoryBtn, &QPushButton::clicked, this, &Dashboard::reset_filter);
@@ -95,6 +113,7 @@ Dashboard::~Dashboard()
 
 void Dashboard::switch_to_valut_page() {
     ui->dashboardPages->setCurrentIndex(0);
+    ui->VaultButton->setChecked(true);
     ui->passwordGeneratorButton->setChecked(false);
     ui->SettingsButton->setChecked(false);
 }
@@ -102,11 +121,13 @@ void Dashboard::switch_to_valut_page() {
 void Dashboard::switch_to_password_generator_page() {
     ui->dashboardPages->setCurrentIndex(1);
     ui->VaultButton->setChecked(false);
+    ui->passwordGeneratorButton->setChecked(true);
     ui->SettingsButton->setChecked(false);
 }
 
 void Dashboard::switch_to_settings_page() {
     ui->dashboardPages->setCurrentIndex(2);
+    ui->SettingsButton->setChecked(true);
     ui->passwordGeneratorButton->setChecked(false);
     ui->VaultButton->setChecked(false);
 }
@@ -180,6 +201,10 @@ void Dashboard::filter_by_category(const QString &category) {
 }
 
 void Dashboard::reset_filter() {
+    // button visuals update
+    uncheck_all_filter_buttons();
+    ui->allCategoryBtn->setChecked(true);
+
     // reset activeCategory to All
     userDataHandler->activeCategory = "All";
     ui->accountPanel->setCurrentIndex(0);
@@ -187,6 +212,16 @@ void Dashboard::reset_filter() {
     // reload the list to show all accounts
     load_list_view(userDataHandler->accountData);
 
+}
+
+// sets all category buttons checked to false
+void Dashboard::uncheck_all_filter_buttons() {
+    ui->allCategoryBtn->setChecked(false);
+    ui->developmentCategoryBtn->setChecked(false);
+    ui->gamingCategoryBtn->setChecked(false);
+    ui->EmailCategoryBtn->setChecked(false);
+    ui->otherCategoryBtn->setChecked(false);
+    ui->socialCategoryBtn->setChecked(false);
 }
 
 

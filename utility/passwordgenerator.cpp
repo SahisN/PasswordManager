@@ -66,3 +66,30 @@ QString PasswordGenerator::generate_character_pool() {
     return characterPool;
 }
 
+int PasswordGenerator:: get_password_length() {
+    return passwordLength;
+}
+
+bool PasswordGenerator::get_include_upper_case() {
+    return includeUpperCaseAlpha;
+}
+bool PasswordGenerator::get_include_number() {
+    return includeNumericCharacter;
+}
+bool PasswordGenerator::get_include_symbol() {
+    return includeSymbols;
+}
+
+void PasswordGenerator::set_password_length(int length) {
+    this->passwordLength = length;
+}
+void PasswordGenerator::set_include_upper_case(bool includeUpperCase) {
+    this->includeUpperCaseAlpha = includeUpperCase;
+}
+void PasswordGenerator::set_include_number(bool includeNumbers) {
+    this->includeNumericCharacter = includeNumbers;
+}
+void PasswordGenerator::set_include_symbol(bool includeSymbol) {
+    this->includeSymbols = includeSymbol;
+}
+

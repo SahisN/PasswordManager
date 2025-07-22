@@ -17,7 +17,13 @@ public:
 
 signals:
     void switch_to_create_account();
-    void switch_to_dashboard(const QString &vaultKey, const QString &fileName, const QString &salt);
+    void switch_to_dashboard(const QString &vaultKey,
+                             const QString &fileName,
+                             const QString &salt,
+                             const int passwordLength,
+                             const bool includeUpperCase,
+                             const bool includeNumbers,
+                             const bool includeSymbols);
 
 private slots:
     void handle_login();

@@ -103,6 +103,10 @@ bool Authentication::create_new_user(const QString& email, const QString& passwo
     newUser["email"] = hashed_email;
     newUser["password"] = hashed_password;
     newUser["salt"] = randomSalt;
+    newUser["passwordLength"] = 8;
+    newUser["includeUpperCase"] = true;
+    newUser["includeNumbers"] = true;
+    newUser["includeSymbols"] = true;
 
     // add the new user data to existing data
     users.append(newUser);
@@ -130,8 +134,11 @@ UserAuthData Authentication::authenticate_user(const QString& email, const QStri
 
     // compare the hash password signature with another hash password that stored in file
     if(user.contains("password") && user["password"] == hashed_password) {
-        return{password, hashed_email, salt};
-        //generate_vault_key(hashed_email, hashed_password);
+        return{password, hashed_email, salt,
+                user["passwordLength"].toInt(),
+                user["includeUpperCase"].toBool(),
+                user["includeNumbers"].toBool(),
+                user["includeSymbols"].toBool()};
     }
 
     return {};

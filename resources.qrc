@@ -12,5 +12,6 @@
         <file>images/web_logo.svg</file>
         <file>images/copy_logo.svg</file>
         <file>images/restart_logo.svg</file>
+        <file>images/logout_logo.svg</file>
     </qresource>
 </RCC>
