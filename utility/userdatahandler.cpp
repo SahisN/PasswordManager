@@ -42,6 +42,7 @@ QString UserDataHandler::decryptText(const QString &encryptedText) {
 QList<PlatformAccount> UserDataHandler::load_account_list(const QJsonArray &encryptedData) {
     QList<PlatformAccount> platformAccountList;
     // if accountJson is not empty, convert into QList<PlatformAccount>
+    int currentIndex = 0;
     for(const QJsonValue &account : encryptedData) {
         if(!account.isObject()) continue;
 
@@ -52,8 +53,11 @@ QList<PlatformAccount> UserDataHandler::load_account_list(const QJsonArray &encr
         platform.email = decryptText(accountObject[emailNameKey].toString());
         platform.password = decryptText(accountObject[passwordNameKey].toString());
         platform.category = accountObject[categoryNameKey].toString();
+        platform.index = currentIndex;
 
         platformAccountList.append(platform);
+
+        currentIndex++;
     }
 
     return platformAccountList;
@@ -77,7 +81,8 @@ bool UserDataHandler::sync_account_data(const QString &platformName, const QStri
 
     // update the QList if successful
     if(isSaved) {
-        const PlatformAccount newPlatformAccount = {platformName, platformEmail, platformPassword, platformCategory};
+        int currentIndex = accountData.isEmpty() ? 0 : accountData.last().index + 1;
+        const PlatformAccount newPlatformAccount = {platformName, platformEmail, platformPassword, platformCategory, currentIndex};
         accountData.append(newPlatformAccount);
 
         // if user adds an account while they are in the matching category filter
@@ -115,6 +120,40 @@ void UserDataHandler::filter_by_category(const QString &targetCategory) {
             filteredData.append(accountData[index]);
         }
     }
+}
+
+bool UserDataHandler::editAccountDetails(const QString &platformName,
+                                         const QString &platformEmail,
+                                         const QString &platformPassword,
+                                         const QString &platformCategory,
+                                         const int index
+                                        )
+{
+    // update encryptedData with new information
+    QJsonObject newAccount;
+    newAccount[platformNameKey] = platformName;
+    newAccount[emailNameKey] = encryptPlainText(platformEmail);
+    newAccount[passwordNameKey] = encryptPlainText(platformPassword);
+    newAccount[categoryNameKey] = platformCategory;
+
+    encryptedData[index] = newAccount;
+
+    // update user file
+    bool isSaved = write_json(encryptedData);
+
+    if(!isSaved) return false;
+
+    // update account data with new information
+    accountData[index].platformName = platformName;
+    accountData[index].email = platformEmail;
+    accountData[index].password = platformPassword;
+    accountData[index].category = platformCategory;
+
+    if(activeCategory != "All") {
+        filter_by_category(activeCategory);
+    }
+
+    return true;
 }
 
 

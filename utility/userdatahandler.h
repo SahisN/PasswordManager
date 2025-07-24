@@ -19,6 +19,11 @@ public:
     bool sync_account_data(const QString &platformName, const QString &platformEmail, const QString &platformPassword,
                            const QString &platformCategory);
     void filter_by_category(const QString &category);
+    bool editAccountDetails(const QString &platformName,
+                            const QString &platformEmail,
+                            const QString &platformPassword,
+                            const QString &platformCategory,
+                            const int index);
 
 private:
     // functions

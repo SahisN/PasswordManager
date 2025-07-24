@@ -13,5 +13,9 @@
         <file>images/copy_logo.svg</file>
         <file>images/restart_logo.svg</file>
         <file>images/logout_logo.svg</file>
+        <file>images/delete_logo.svg</file>
+        <file>images/edit_logo.svg</file>
+        <file>images/cancel_logo.svg</file>
+        <file>images/save_logo.svg</file>
     </qresource>
 </RCC>

@@ -50,7 +50,7 @@ Dashboard::Dashboard(QWidget *parent,
         userDataHandler = new UserDataHandler("users/" + fileName + ".json", vaultKey, salt);
 
         // sub pages for dashboard
-        PasswordGeneratorPage* passwordGeneratorPage = new PasswordGeneratorPage(this, passwordGenerator, vaultKey);
+        PasswordGeneratorPage* passwordGeneratorPage = new PasswordGeneratorPage(this, passwordGenerator, fileName);
         SettingsPage* settingPage = new SettingsPage(this);
 
         ui->dashboardPages->insertWidget(1, passwordGeneratorPage);
@@ -104,6 +104,13 @@ Dashboard::Dashboard(QWidget *parent,
         });
 
         connect(ui->allCategoryBtn, &QPushButton::clicked, this, &Dashboard::reset_filter);
+
+        // account edit & delete operation
+        connect(ui->editAccountDetails, &QPushButton::clicked, this, &Dashboard::go_to_edit_page);
+        connect(ui->saveEditBtn, &QPushButton::clicked, this, &Dashboard::edit_account_detail);
+        connect(ui->cancelEditBtn, &QPushButton::clicked, this, [=]() {
+            ui->accountPanel->setCurrentIndex(1);
+        });
 }
 
 Dashboard::~Dashboard()
@@ -224,4 +231,53 @@ void Dashboard::uncheck_all_filter_buttons() {
     ui->socialCategoryBtn->setChecked(false);
 }
 
+void Dashboard::go_to_edit_page() {
+    const QString currentPlatformName = ui->platformNameText->text();
+    const QString currentEmail = ui->platformEmailText->text();
+    const QString currentPassword = ui->platformPasswordText->text();
+    const QString currentCategory = ui->platformCategoryText->text();
+    const int currentCategoryIndex = ui->editCategoryCombo->findText(currentCategory);
+
+    // switch to edit page
+    ui->accountPanel->setCurrentIndex(3);
+
+    // set default input
+    ui->editPlatformName->setText(currentPlatformName);
+    ui->editEmailInput->setText(currentEmail);
+    ui->editPasswordInput->setText(currentPassword);
+    ui->editCategoryCombo->setCurrentIndex(currentCategoryIndex);
+}
+
+void Dashboard::edit_account_detail() {
+    const QString editPlatformName = ui->editPlatformName->text();
+    const QString editEmail = ui->editEmailInput->text();
+    const QString editPassword = ui->editPasswordInput->text();
+    const QString editCategory = ui->editCategoryCombo->currentText();
+
+    int itemIndex;
+    if(userDataHandler->activeCategory == "All") {
+        itemIndex = userDataHandler->accountData[ui->listWidget->currentRow()].index;
+    }
+
+    else {
+        itemIndex = userDataHandler->filteredData[ui->listWidget->currentRow()].index;
+    }
+
+    qDebug() << itemIndex;
+
+    // edit account data list
+    userDataHandler->editAccountDetails(editPlatformName, editEmail, editPassword, editCategory, itemIndex);
+
+    // update the list view
+    if(userDataHandler->activeCategory == "All") {
+        load_list_view(userDataHandler->accountData);
+    }
+
+    else {
+        load_list_view(userDataHandler->filteredData);
+    }
+
+    // switch to account detail page
+    ui->accountPanel->setCurrentIndex(0);
+}
 

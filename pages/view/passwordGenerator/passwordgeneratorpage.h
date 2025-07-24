@@ -23,7 +23,7 @@ private slots:
 private:
     Ui::PasswordGeneratorPage *ui;
     PasswordGenerator* passwordGenerator;
-    const QString &vaultKey;
+    const QString vaultKey;
 };
 
 #endif // PASSWORDGENERATORPAGE_H

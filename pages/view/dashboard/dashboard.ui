@@ -478,6 +478,9 @@ border-radius:10px;</string>
               <string notr="true">border: 2px;
 border-radius:10px;</string>
              </property>
+             <property name="uniformItemSizes">
+              <bool>false</bool>
+             </property>
             </widget>
            </item>
           </layout>
@@ -501,6 +504,19 @@ border-radius:10px;</string>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_8">
             <item>
+             <spacer name="verticalSpacer_14">
+              <property name="orientation">
+               <enum>Qt::Orientation::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
              <widget class="QStackedWidget" name="accountPanel">
               <property name="maximumSize">
                <size>
@@ -515,7 +531,7 @@ border-radius:10px;</string>
                </font>
               </property>
               <property name="currentIndex">
-               <number>2</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="emptyAccountPage">
                <layout class="QVBoxLayout" name="verticalLayout">
@@ -543,17 +559,38 @@ border-radius:10px;</string>
               <widget class="QWidget" name="accountDetailPage">
                <layout class="QVBoxLayout" name="verticalLayout_6">
                 <item>
-                 <widget class="QLabel" name="platformNameText">
-                  <property name="font">
-                   <font>
-                    <pointsize>12</pointsize>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>PlatformTitle</string>
-                  </property>
-                 </widget>
+                 <layout class="QHBoxLayout" name="horizontalLayout_5">
+                  <item>
+                   <widget class="QLabel" name="platformNameText">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>PlatformTitle</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item alignment="Qt::AlignmentFlag::AlignRight">
+                   <widget class="QPushButton" name="editAccountDetails">
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../../../resources.qrc">
+                      <normaloff>:/img/images/edit_logo.svg</normaloff>:/img/images/edit_logo.svg</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>32</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
                  <widget class="Line" name="line">
@@ -655,6 +692,40 @@ border-radius:10px;</string>
                   </property>
                   <property name="text">
                    <string>TextLabel</string>
+                  </property>
+                 </widget>
+                </item>
+                <item alignment="Qt::AlignmentFlag::AlignHCenter">
+                 <widget class="QPushButton" name="deleteAccountBtn">
+                  <property name="font">
+                   <font>
+                    <pointsize>14</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"> QPushButton {
+            background-color: #0078d7;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 5px;
+        }
+
+        QPushButton:hover {
+            background-color: red;
+        }</string>
+                  </property>
+                  <property name="text">
+                   <string>Delete account</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../../../resources.qrc">
+                    <normaloff>:/img/images/delete_logo.svg</normaloff>:/img/images/delete_logo.svg</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>26</width>
+                    <height>26</height>
+                   </size>
                   </property>
                  </widget>
                 </item>
@@ -929,6 +1000,333 @@ padding: 3px;
                 </item>
                 <item>
                  <spacer name="verticalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="editAccountPanel">
+               <layout class="QVBoxLayout" name="verticalLayout_9">
+                <item alignment="Qt::AlignmentFlag::AlignHCenter">
+                 <widget class="QLabel" name="editAccountTitle">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Edit Platform Account</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_13">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item alignment="Qt::AlignmentFlag::AlignBottom">
+                 <widget class="QLabel" name="label_5">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Platform Name</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="editPlatformName">
+                  <property name="styleSheet">
+                   <string notr="true">border: 2px solid #2f3e53;;
+border-radius: 8px;
+padding: 3px;
+
+</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_12">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item alignment="Qt::AlignmentFlag::AlignBottom">
+                 <widget class="QLabel" name="label_2">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Email</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="editEmailInput">
+                  <property name="font">
+                   <font>
+                    <pointsize>11</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 2px solid #2f3e53;;
+border-radius: 8px;
+padding: 3px;
+
+</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_11">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item alignment="Qt::AlignmentFlag::AlignBottom">
+                 <widget class="QLabel" name="label_3">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Password</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_7">
+                  <item alignment="Qt::AlignmentFlag::AlignTop">
+                   <widget class="QLineEdit" name="editPasswordInput">
+                    <property name="font">
+                     <font>
+                      <pointsize>11</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">border: 2px solid #2f3e53;;
+border-radius: 8px;
+padding: 3px;
+
+</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item alignment="Qt::AlignmentFlag::AlignTop">
+                   <widget class="QPushButton" name="generatePasswordBtn">
+                    <property name="styleSheet">
+                     <string notr="true">border: 1px solid #2f3e53;;
+border-radius: 8px;
+padding: 2px;
+
+</string>
+                    </property>
+                    <property name="text">
+                     <string>Generate</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../../../resources.qrc">
+                      <normaloff>:/img/images/restart_logo.svg</normaloff>:/img/images/restart_logo.svg</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>24</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_10">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item alignment="Qt::AlignmentFlag::AlignBottom">
+                 <widget class="QLabel" name="label_4">
+                  <property name="font">
+                   <font>
+                    <pointsize>12</pointsize>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Category</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="editCategoryCombo">
+                  <property name="font">
+                   <font>
+                    <pointsize>11</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">border: 2px solid #2f3e53;;
+border-radius: 8px;
+padding: 3px;
+
+</string>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Development</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Gaming</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Social</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Email</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Other</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_9">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_6">
+                  <item>
+                   <widget class="QPushButton" name="cancelEditBtn">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true"> QPushButton {
+            background-color: #0078d7;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 5px;
+        }
+
+        QPushButton:hover {
+            background-color: red;
+        }</string>
+                    </property>
+                    <property name="text">
+                     <string>Cancel</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../../../resources.qrc">
+                      <normaloff>:/img/images/cancel_logo.svg</normaloff>:/img/images/cancel_logo.svg</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>20</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="saveEditBtn">
+                    <property name="font">
+                     <font>
+                      <pointsize>12</pointsize>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true"> QPushButton {
+            background-color: #0078d7;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 5px;
+        }</string>
+                    </property>
+                    <property name="text">
+                     <string>Save</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../../../resources.qrc">
+                      <normaloff>:/img/images/save_logo.svg</normaloff>:/img/images/save_logo.svg</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>20</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_8">
                   <property name="orientation">
                    <enum>Qt::Orientation::Vertical</enum>
                   </property>

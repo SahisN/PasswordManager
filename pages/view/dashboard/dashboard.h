@@ -36,6 +36,8 @@ private slots:
     void filter_by_category(const QString &category);
     void reset_filter();
     void uncheck_all_filter_buttons();
+    void go_to_edit_page();
+    void edit_account_detail();
 
 private:
     Ui::Dashboard *ui;

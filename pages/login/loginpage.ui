@@ -113,6 +113,9 @@
             <pointsize>10</pointsize>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">color: red;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -149,11 +152,14 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="PasswordErrorText">
+         <widget class="QLabel" name="passwordErrorText">
           <property name="font">
            <font>
             <pointsize>10</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: red;</string>
           </property>
           <property name="text">
            <string/>

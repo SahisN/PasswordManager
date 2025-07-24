@@ -14,6 +14,17 @@ LoginPage::LoginPage(QWidget *parent, Authentication *authPtr)
 
     connect(ui->createAccountButton, &QPushButton::clicked, this, &LoginPage::switch_to_create_account);
     connect(ui->loginButton, &QPushButton::clicked, this, &LoginPage::handle_login);
+
+    // lambda functions
+    connect(ui->emailInput, &QLineEdit::editingFinished, this, [=]() {
+        ui->emailErrorText->clear();
+        ui->emailErrorText->setMargin(3);
+    });
+
+    connect(ui->passwordInput, &QLineEdit::editingFinished, this, [=]() {
+        ui->passwordErrorText->clear();
+        ui->passwordErrorText->setMargin(3);
+    });
 }
 
 LoginPage::~LoginPage()
@@ -29,12 +40,12 @@ void LoginPage::handle_login() {
 
     // if it's invalid email, set error message
     if(!emailRegex.match(email).hasMatch()) {
-        qDebug() << "invalid email!";
+       ui->emailErrorText->setText("Invalid Email");
     }
 
     // if password is empty, set error message
     else if(password.isEmpty()) {
-        qDebug() << "invalid password!";
+        ui->passwordErrorText->setText("Invalid Password");
     }
 
     // if password & email is valid then authenticate user
@@ -54,7 +65,9 @@ void LoginPage::handle_login() {
 
         // if login isn't successful then notify user
         else {
-            qDebug() << "Email or Password is incorrect!";
+            ui->emailErrorText->clear();
+            ui->passwordErrorText->setText("Password Or Email Is Incorrect!");
+            ui->passwordErrorText->setMargin(10);
         }
     }
 }
