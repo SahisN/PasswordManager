@@ -54,6 +54,11 @@ void LoginPage::handle_login() {
         const QString fileName = authPtr->secure_hash(email);
 
         if(!userAuthData.filePath.isEmpty() && !userAuthData.masterKey.isEmpty() && !userAuthData.salt.isEmpty()) {
+            // clear input
+            ui->emailInput->clear();
+            ui->passwordInput->clear();
+
+            // switch to dashboard
             emit LoginPage::switch_to_dashboard(userAuthData.masterKey,
                                                 userAuthData.filePath,
                                                 userAuthData.salt,

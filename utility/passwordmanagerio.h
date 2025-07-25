@@ -12,7 +12,7 @@ public:
     QString secure_hash(const QString& plainString);
 
 private:
-    const QString filePath;
+    QString basePath;
     void ensure_directory_existance();
 };
 

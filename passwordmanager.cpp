@@ -75,4 +75,22 @@ void PasswordManager::go_to_dashboard(const QString &vaultKey,
     dashboardPagePtr = new Dashboard(this, vaultKey, fileName, salt, passwordLength, includeUpperCase, includeNumbers, includeSymbols);
     ui->stackedWidget->addWidget(dashboardPagePtr);
     ui->stackedWidget->setCurrentIndex(2);
+
+    // connect signal
+    connect(dashboardPagePtr, &Dashboard::handle_logout, this, &PasswordManager::logout);
+}
+
+void PasswordManager::logout() {
+    if(dashboardPagePtr) {
+        // remove dashboard Page Widget
+        ui->stackedWidget->removeWidget(dashboardPagePtr);
+        ui->stackedWidget->setCurrentIndex(0);
+    }
+
+    // remove dashboard Page pointer from memory
+    delete dashboardPagePtr;
+    dashboardPagePtr = nullptr;
+
+
+
 }

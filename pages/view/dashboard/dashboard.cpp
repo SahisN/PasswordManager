@@ -1,7 +1,6 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
 #include "../passwordGenerator/passwordgeneratorpage.h"
-#include "../settings/settingspage.h"
 #include "utility/userdatahandler.h"
 #include <QJsonArray>
 #include <QStringList>
@@ -21,6 +20,8 @@ Dashboard::Dashboard(QWidget *parent,
 {
     ui->setupUi(this);
 
+    // set vault page as default page
+    ui->VaultButton->setChecked(true);
 
     ui->listWidget->setStyleSheet(R"(
         QListWidget {
@@ -51,21 +52,14 @@ Dashboard::Dashboard(QWidget *parent,
 
         // sub pages for dashboard
         PasswordGeneratorPage* passwordGeneratorPage = new PasswordGeneratorPage(this, passwordGenerator, fileName);
-        SettingsPage* settingPage = new SettingsPage(this);
 
         ui->dashboardPages->insertWidget(1, passwordGeneratorPage);
-        ui->dashboardPages->insertWidget(2, settingPage);
 
-        // temp
-        qDebug() << vaultKey << "\n";
-        qDebug() << userDataHandler->accountData.size();
-        qDebug() << userDataHandler->encryptedData.size();
 
         load_list_view(userDataHandler->accountData);
 
         // navigation
         connect(ui->passwordGeneratorButton, &QPushButton::clicked, this, &Dashboard::switch_to_password_generator_page);
-        connect(ui->SettingsButton, &QPushButton::clicked, this, &Dashboard::switch_to_settings_page);
         connect(ui->addAccountButton, &QPushButton::clicked, this, &Dashboard::switch_to_account_creation);
         connect(ui->VaultButton, &QPushButton::clicked, this, &Dashboard::switch_to_valut_page);
 
@@ -112,6 +106,10 @@ Dashboard::Dashboard(QWidget *parent,
             ui->accountPanel->setCurrentIndex(1);
         });
         connect(ui->deleteAccountBtn, &QPushButton::clicked, this, &Dashboard::handle_deletion);
+
+        // logout button
+        connect(ui->logoutButton, &QPushButton::clicked, this, &Dashboard::handle_logout);
+
 }
 
 Dashboard::~Dashboard()
@@ -123,22 +121,14 @@ void Dashboard::switch_to_valut_page() {
     ui->dashboardPages->setCurrentIndex(0);
     ui->VaultButton->setChecked(true);
     ui->passwordGeneratorButton->setChecked(false);
-    ui->SettingsButton->setChecked(false);
 }
 
 void Dashboard::switch_to_password_generator_page() {
     ui->dashboardPages->setCurrentIndex(1);
     ui->VaultButton->setChecked(false);
     ui->passwordGeneratorButton->setChecked(true);
-    ui->SettingsButton->setChecked(false);
 }
 
-void Dashboard::switch_to_settings_page() {
-    ui->dashboardPages->setCurrentIndex(2);
-    ui->SettingsButton->setChecked(true);
-    ui->passwordGeneratorButton->setChecked(false);
-    ui->VaultButton->setChecked(false);
-}
 
 void Dashboard::switch_to_account_creation() {
     ui->accountPanel->setCurrentIndex(2);

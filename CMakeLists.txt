@@ -17,7 +17,7 @@ qt_add_executable(PasswordManager
 
     pages/view/dashboard/dashboard.h pages/view/dashboard/dashboard.cpp pages/view/dashboard/dashboard.ui
     pages/view/passwordGenerator/passwordgeneratorpage.h pages/view/passwordGenerator/passwordgeneratorpage.cpp pages/view/passwordGenerator/passwordgeneratorpage.ui
-    pages/view/settings/settingspage.h pages/view/settings/settingspage.cpp pages/view/settings/settingspage.ui
+
 
     utility/passwordgenerator.h utility/passwordgenerator.cpp
     utility/authentication.h utility/authentication.cpp

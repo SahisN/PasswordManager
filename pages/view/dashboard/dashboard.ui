@@ -133,31 +133,24 @@ border-radius:10px;</string>
          </widget>
         </item>
         <item alignment="Qt::AlignmentFlag::AlignLeft">
-         <widget class="QPushButton" name="SettingsButton">
+         <widget class="QPushButton" name="logoutButton">
           <property name="font">
            <font>
             <pointsize>10</pointsize>
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true"> QPushButton {
-            background-color: transparent;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-        }
+           <string notr="true">QPushButton {
+    background-color: transparent;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+}
 
-        QPushButton:hover:!checked {
-            background-color: #0078d7;
-        }
-
-        QPushButton:checked {
-            background-color: #0078d7;
-        }
-
-        QPushButton:hover:checked {
-            background-color: #aaaaaa;
-        }</string>
+QPushButton:hover {
+    background-color: red;
+}
+</string>
           </property>
           <property name="text">
            <string>Logout                   </string>

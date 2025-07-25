@@ -7,20 +7,21 @@
 #include <QFileInfo>
 #include <QCryptographicHash>
 #include <QStandardPaths>
+#include <QMessageBox>
 #include <QDebug>
 
 
 PasswordManagerIO::PasswordManagerIO(const QString &filePath)
-    : filePath("PasswordManagerData/" + filePath)
 {
     // QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
-    QString basePath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + this->filePath;
-    qDebug() << basePath;
+    basePath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/PasswordManagerData/" + filePath;
+
+    qDebug() << this->basePath;
 }
 
 void PasswordManagerIO::ensure_directory_existance() {
     // filters file name from directory. "test/user1/user.json" -> test/user1
-    const QFileInfo filePathInfo{filePath};
+    const QFileInfo filePathInfo{basePath};
 
     qDebug() << filePathInfo.path() << "\n";
 
@@ -30,21 +31,15 @@ void PasswordManagerIO::ensure_directory_existance() {
 
         // create parent directory & sub-directories
         if(dir.mkpath(filePathInfo.path())) {
-            qDebug() << "dir created \n";
+            QMessageBox::information(nullptr, "Directory created", "new directory was created!");
         }
 
         // notify user if dir creation failed
         else {
-            qDebug() << "creation failed! \n";
+           QMessageBox::information(nullptr, "Unable to create directory", "Failed to create directory for app data");
+
         }
     }
-
-    // debug purpose [Temp]
-    else {
-        qDebug() << "dir already exist";
-    }
-
-
 }
 
 QString PasswordManagerIO::secure_hash(const QString& plainString) {
@@ -59,14 +54,13 @@ QString PasswordManagerIO::secure_hash(const QString& plainString) {
 }
 
 QJsonArray PasswordManagerIO::read_json() {
-    QFile file(filePath);
+    QFile file(basePath);
     QJsonArray data;
 
     // checks whether file exists or not.
     if(!file.open(QIODevice::ReadOnly)) {
 
         // returns empty data if file doesn't exist
-        qWarning() << "Failed to open file: " << filePath;
         return data;
     }
 
@@ -84,8 +78,9 @@ QJsonArray PasswordManagerIO::read_json() {
     }
 
     else {
-        qWarning() << "JSON is not an array in: " << filePath;
+        QMessageBox::information(nullptr, "Unable to read", "File doesn't exist or unreadable");
     }
+
 
     return data;
 }
@@ -95,11 +90,10 @@ bool PasswordManagerIO::write_json(const QJsonArray& data) {
     // ensure directory existance prior to writing
     ensure_directory_existance();
 
-    QFile file(filePath);
+    QFile file(basePath);
 
     // checks whether the file exist
     if(!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-        qWarning() << "Failed to open file for writing: " << filePath;
         return false;
     }
 

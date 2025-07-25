@@ -29,6 +29,7 @@ private slots:
                          const bool includeNumbers,
                          const bool includeSymbols
                         );
+    void logout();
 
 private:
     Ui::PasswordManager *ui;

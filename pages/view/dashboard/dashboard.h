@@ -25,10 +25,12 @@ public:
                     );
     ~Dashboard();
 
+signals:
+    void handle_logout();
+
 private slots:
     void switch_to_valut_page();
     void switch_to_password_generator_page();
-    void switch_to_settings_page();
     void switch_to_account_creation();
     void switch_to_account_detail();
     void load_list_view(const QList<PlatformAccount> accountData);

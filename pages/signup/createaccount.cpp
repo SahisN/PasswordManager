@@ -52,6 +52,10 @@ void CreateAccount::create_user_account() {
 
         // if account is created successfully, switch to login page
         if(accountCreated) {
+            ui->emailInput->clear();
+            ui->passwordInput->clear();
+            ui->confirmPasswordInput->clear();
+
             emit CreateAccount::switch_to_login();
         }
 
