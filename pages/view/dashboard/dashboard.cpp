@@ -111,6 +111,7 @@ Dashboard::Dashboard(QWidget *parent,
         connect(ui->cancelEditBtn, &QPushButton::clicked, this, [=]() {
             ui->accountPanel->setCurrentIndex(1);
         });
+        connect(ui->deleteAccountBtn, &QPushButton::clicked, this, &Dashboard::handle_deletion);
 }
 
 Dashboard::~Dashboard()
@@ -248,6 +249,20 @@ void Dashboard::go_to_edit_page() {
     ui->editCategoryCombo->setCurrentIndex(currentCategoryIndex);
 }
 
+void Dashboard::update_list_view() {
+    // update the list view
+    if(userDataHandler->activeCategory == "All") {
+        load_list_view(userDataHandler->accountData);
+    }
+
+    else {
+        load_list_view(userDataHandler->filteredData);
+    }
+
+    // switch to account detail page
+    ui->accountPanel->setCurrentIndex(0);
+}
+
 void Dashboard::edit_account_detail() {
     const QString editPlatformName = ui->editPlatformName->text();
     const QString editEmail = ui->editEmailInput->text();
@@ -268,16 +283,26 @@ void Dashboard::edit_account_detail() {
     // edit account data list
     userDataHandler->editAccountDetails(editPlatformName, editEmail, editPassword, editCategory, itemIndex);
 
-    // update the list view
+    // update list view
+    update_list_view();
+}
+
+void Dashboard::handle_deletion() {
+    // get the index for account data
+    int itemIndex;
+
     if(userDataHandler->activeCategory == "All") {
-        load_list_view(userDataHandler->accountData);
+        itemIndex = userDataHandler->accountData[ui->listWidget->currentRow()].index;
     }
 
     else {
-        load_list_view(userDataHandler->filteredData);
+        itemIndex = userDataHandler->filteredData[ui->listWidget->currentRow()].index;
     }
 
-    // switch to account detail page
-    ui->accountPanel->setCurrentIndex(0);
+    // delete the account detail from user data
+    userDataHandler->deleteAccountDetails(itemIndex);
+
+    // update the list view
+    update_list_view();
 }
 

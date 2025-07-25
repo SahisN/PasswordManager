@@ -156,5 +156,25 @@ bool UserDataHandler::editAccountDetails(const QString &platformName,
     return true;
 }
 
+bool UserDataHandler::deleteAccountDetails(const int index) {
+    QJsonArray newEncryptedData = encryptedData;
 
+    newEncryptedData.removeAt(index);
+
+    bool isSaved = write_json(newEncryptedData);
+
+    if(isSaved) {
+        encryptedData.removeAt(index);
+
+        // reload the account Data to get current item indexing
+        accountData = load_account_list(this->encryptedData);
+
+        // check if user is using filter category
+        if(activeCategory != "All") {
+            filter_by_category(activeCategory);
+        }
+    }
+
+    return isSaved;
+}
 

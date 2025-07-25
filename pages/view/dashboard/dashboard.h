@@ -38,6 +38,8 @@ private slots:
     void uncheck_all_filter_buttons();
     void go_to_edit_page();
     void edit_account_detail();
+    void handle_deletion();
+    void update_list_view();
 
 private:
     Ui::Dashboard *ui;

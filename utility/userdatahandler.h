@@ -24,6 +24,7 @@ public:
                             const QString &platformPassword,
                             const QString &platformCategory,
                             const int index);
+    bool deleteAccountDetails(const int index);
 
 private:
     // functions
