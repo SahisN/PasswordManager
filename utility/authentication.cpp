@@ -3,7 +3,6 @@
 #include <QString>
 #include <QJsonArray>
 #include <QJsonObject>
-#include <QDebug>
 #include <QJsonValue>
 #include <QByteArray>
 #include <QCryptographicHash>
@@ -48,11 +47,9 @@ QJsonObject Authentication::find_user(const QString& email) {
         }
         // convert QJsonValue into Object
         QJsonObject user = userData.toObject();
-        qDebug() << userData << '\n';
 
         // check if email exists and check if email matches
         if(user.contains("email") && user["email"].toString() == email) {
-            qDebug() << user["email"] << '\n';
             return user;
         }
     }
@@ -76,7 +73,6 @@ bool Authentication::user_exist(const QString& email, const QJsonArray& users) {
         }
         // convert QJsonValue into Object
         QJsonObject user = userData.toObject();
-        qDebug() << userData << '\n';
 
         // check if email exists and check if email matches
         if(user.contains("email") && user["email"].toString() == email) {
@@ -127,7 +123,6 @@ UserAuthData Authentication::authenticate_user(const QString& email, const QStri
 
     // get salt
     const QString salt = user["salt"].toString();
-    qDebug() << salt;
 
     // if user exist, hash the password
     const QString hashed_password = secure_hash(password + salt);

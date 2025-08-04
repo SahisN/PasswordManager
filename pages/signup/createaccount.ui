@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>716</width>
-    <height>543</height>
+    <height>545</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -138,7 +138,9 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">border: 2px solid #0078d7;;
+border-radius:5px;
+padding: 2px;</string>
           </property>
           <property name="inputMethodHints">
            <set>Qt::InputMethodHint::ImhEmailCharactersOnly</set>
@@ -185,6 +187,12 @@
             <pointsize>12</pointsize>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">border: 2px solid #0078d7;;
+border-radius:5px;
+padding: 2px
+</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -229,6 +237,11 @@
            <font>
             <pointsize>12</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border: 2px solid #0078d7;;
+border-radius:5px;
+padding: 2px;</string>
           </property>
           <property name="echoMode">
            <enum>QLineEdit::EchoMode::Password</enum>

@@ -8,22 +8,17 @@
 #include <QCryptographicHash>
 #include <QStandardPaths>
 #include <QMessageBox>
-#include <QDebug>
 
 
 PasswordManagerIO::PasswordManagerIO(const QString &filePath)
 {
     // QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)
     basePath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/PasswordManagerData/" + filePath;
-
-    qDebug() << this->basePath;
 }
 
 void PasswordManagerIO::ensure_directory_existance() {
     // filters file name from directory. "test/user1/user.json" -> test/user1
     const QFileInfo filePathInfo{basePath};
-
-    qDebug() << filePathInfo.path() << "\n";
 
     QDir dir;
     // if directory doesn't exist, create directory

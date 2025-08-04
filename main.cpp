@@ -11,7 +11,6 @@ int main(int argc, char *argv[])
 
     PasswordManager w;
     w.setWindowIcon(QIcon(":/img/images/vault_logo.svg"));
-    w.setIconSize(QSize(48, 48));
 
     w.show();
     return a.exec();

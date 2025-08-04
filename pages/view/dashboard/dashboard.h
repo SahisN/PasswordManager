@@ -42,6 +42,7 @@ private slots:
     void edit_account_detail();
     void handle_deletion();
     void update_list_view();
+    void handle_password_generation();
 
 private:
     Ui::Dashboard *ui;

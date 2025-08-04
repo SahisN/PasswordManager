@@ -86,5 +86,9 @@ void PasswordGeneratorPage::update_password_settings() {
 
     if(edited) {
         passwordManagerIO.write_json(users);
+        passwordGenerator->set_password_length(passwordLength);
+        passwordGenerator->set_include_number(numberIncluded);
+        passwordGenerator->set_include_symbol(symbolIncluded);
+        passwordGenerator->set_include_upper_case(upperCaseIncluded);
     }
 }

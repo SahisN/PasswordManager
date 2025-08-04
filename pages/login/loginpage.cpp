@@ -1,6 +1,5 @@
 #include "loginpage.h"
 #include "ui_loginpage.h"
-#include "qDebug"
 #include "utility/authentication.h"
 #include <QRegularExpression>
 #include <QString>

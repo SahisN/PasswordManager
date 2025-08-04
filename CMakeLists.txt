@@ -1,10 +1,19 @@
 cmake_minimum_required(VERSION 3.19)
+
 project(PasswordManager LANGUAGES CXX)
+
+
+set(CMAKE_AUTORCC ON)
+
+
+if(WIN32)
+    set(APP_ICON_RESOURCE_WINDOWS "${CMAKE_CURRENT_SOURCE_DIR}/application.rc")
+endif()
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
 
 qt_standard_project_setup()
-set(CMAKE_AUTORCC ON)
+
 qt_add_executable(PasswordManager
     WIN32 MACOSX_BUNDLE
     main.cpp
@@ -18,7 +27,6 @@ qt_add_executable(PasswordManager
     pages/view/dashboard/dashboard.h pages/view/dashboard/dashboard.cpp pages/view/dashboard/dashboard.ui
     pages/view/passwordGenerator/passwordgeneratorpage.h pages/view/passwordGenerator/passwordgeneratorpage.cpp pages/view/passwordGenerator/passwordgeneratorpage.ui
 
-
     utility/passwordgenerator.h utility/passwordgenerator.cpp
     utility/authentication.h utility/authentication.cpp
     utility/passwordmanagerio.h utility/passwordmanagerio.cpp
@@ -27,13 +35,17 @@ qt_add_executable(PasswordManager
 
     extern/qaesencryption.h extern/qaesencryption.cpp
     utility/userauthdata.h
+
     resources.qrc
+    ${APP_ICON_RESOURCE_WINDOWS}
+
 
 )
 
 target_include_directories(PasswordManager PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
+
 
 target_link_libraries(PasswordManager
     PRIVATE

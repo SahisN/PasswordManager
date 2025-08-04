@@ -5,7 +5,6 @@
 #include <QJsonArray>
 #include <QStringList>
 #include <QJsonObject>
-#include <QDebug>
 
 Dashboard::Dashboard(QWidget *parent,
                      const QString &vaultKey,
@@ -23,6 +22,9 @@ Dashboard::Dashboard(QWidget *parent,
     // set vault page as default page
     ui->VaultButton->setChecked(true);
 
+    // set all items default filter
+    ui->allCategoryBtn->setChecked(true);
+
     ui->listWidget->setStyleSheet(R"(
         QListWidget {
             spacing: 12px; /* spacing between items */
@@ -31,7 +33,7 @@ Dashboard::Dashboard(QWidget *parent,
 
         QListWidget::item {
             padding: 10px;
-            font-size: 16px;
+            font-size: 22px;
             font-weight: bold;
             color: white;
             margin: 8px;
@@ -110,6 +112,9 @@ Dashboard::Dashboard(QWidget *parent,
         // logout button
         connect(ui->logoutButton, &QPushButton::clicked, this, &Dashboard::handle_logout);
 
+        // auto generate password based on user preference
+        connect(ui->autoGenerateButton, &QPushButton::clicked, this, &Dashboard::handle_password_generation);
+
 }
 
 Dashboard::~Dashboard()
@@ -157,7 +162,6 @@ void Dashboard::switch_to_account_detail() {
     ui->platformPasswordText->setText(currentAccount.password);
     ui->platformCategoryText->setText(currentAccount.category);
 
-    qDebug() << userDataHandler->activeCategory;
 }
 
 void Dashboard::load_list_view(const QList<PlatformAccount> accountData) {
@@ -223,6 +227,8 @@ void Dashboard::uncheck_all_filter_buttons() {
 }
 
 void Dashboard::go_to_edit_page() {
+    if(userDataHandler->accountData.isEmpty()) return;
+
     const QString currentPlatformName = ui->platformNameText->text();
     const QString currentEmail = ui->platformEmailText->text();
     const QString currentPassword = ui->platformPasswordText->text();
@@ -237,6 +243,7 @@ void Dashboard::go_to_edit_page() {
     ui->editEmailInput->setText(currentEmail);
     ui->editPasswordInput->setText(currentPassword);
     ui->editCategoryCombo->setCurrentIndex(currentCategoryIndex);
+
 }
 
 void Dashboard::update_list_view() {
@@ -268,8 +275,6 @@ void Dashboard::edit_account_detail() {
         itemIndex = userDataHandler->filteredData[ui->listWidget->currentRow()].index;
     }
 
-    qDebug() << itemIndex;
-
     // edit account data list
     userDataHandler->editAccountDetails(editPlatformName, editEmail, editPassword, editCategory, itemIndex);
 
@@ -278,6 +283,9 @@ void Dashboard::edit_account_detail() {
 }
 
 void Dashboard::handle_deletion() {
+    // if account data is empty, exit the function
+    if(userDataHandler->accountData.isEmpty()) return;
+
     // get the index for account data
     int itemIndex;
 
@@ -296,3 +304,7 @@ void Dashboard::handle_deletion() {
     update_list_view();
 }
 
+void Dashboard::handle_password_generation() {
+    const QString randomizedPassword = passwordGenerator->generate_password();
+    ui->platformPasswordInput->setText(randomizedPassword);
+}

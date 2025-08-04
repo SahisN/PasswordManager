@@ -2,7 +2,7 @@
 #include "ui_createaccount.h"
 #include "utility/authentication.h"
 #include <QRegularExpression>
-#include "QDebug"
+
 
 CreateAccount::CreateAccount(QWidget *parent, Authentication *authPtr)
     : QWidget(parent)

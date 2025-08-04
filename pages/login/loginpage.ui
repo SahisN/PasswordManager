@@ -104,6 +104,11 @@
             <pointsize>12</pointsize>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">border: 2px solid #0078d7;;
+border-radius:5px;
+padding: 3px;</string>
+          </property>
          </widget>
         </item>
         <item>
@@ -142,6 +147,11 @@
            <font>
             <pointsize>12</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border: 2px solid #0078d7;;
+border-radius:5px;
+padding: 3px;</string>
           </property>
           <property name="text">
            <string/>
