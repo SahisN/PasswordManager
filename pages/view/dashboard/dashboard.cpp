@@ -5,6 +5,7 @@
 #include <QJsonArray>
 #include <QStringList>
 #include <QJsonObject>
+#include <QClipboard>
 
 Dashboard::Dashboard(QWidget *parent,
                      const QString &vaultKey,
@@ -115,6 +116,9 @@ Dashboard::Dashboard(QWidget *parent,
         // auto generate password based on user preference
         connect(ui->autoGenerateButton, &QPushButton::clicked, this, &Dashboard::handle_password_generation);
 
+        // copy to clipboard button
+        connect(ui->copyButton, &QPushButton::clicked, this, &Dashboard::copy_to_clip_board);
+
 }
 
 Dashboard::~Dashboard()
@@ -161,7 +165,7 @@ void Dashboard::switch_to_account_detail() {
     ui->platformEmailText->setText(currentAccount.email);
     ui->platformPasswordText->setText(currentAccount.password);
     ui->platformCategoryText->setText(currentAccount.category);
-
+    ui->copyButton->setText("Copy");
 }
 
 void Dashboard::load_list_view(const QList<PlatformAccount> accountData) {
@@ -307,4 +311,10 @@ void Dashboard::handle_deletion() {
 void Dashboard::handle_password_generation() {
     const QString randomizedPassword = passwordGenerator->generate_password();
     ui->platformPasswordInput->setText(randomizedPassword);
+}
+
+void Dashboard::copy_to_clip_board() {
+    const QString password = ui->platformPasswordText->text();
+    QGuiApplication::clipboard()->setText(password);
+    ui->copyButton->setText("Copied!");
 }

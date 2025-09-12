@@ -43,6 +43,7 @@ private slots:
     void handle_deletion();
     void update_list_view();
     void handle_password_generation();
+    void copy_to_clip_board();
 
 private:
     Ui::Dashboard *ui;
